@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- Document Character Encoding & Responsive Mobile Viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Stillness — Evidence-based guided meditations, soothing sleep stories, and daily mindfulness rituals designed to bring quiet clarity to your day." />
+  <title>Stillness — Meditation &amp; Mental Wellness</title>
+
+  <!-- Google Fonts: 'Fraunces' (Editorial Display Serif) & 'Plus Jakarta Sans' (Clean Geometric UI Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS v3 Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ========================================================================
+       TAILWIND THEME CONFIGURATION
+       Custom design tokens for our serene botanical wellness palette,
+       typography pairing, and soft atmospheric elevation shadows.
+       ======================================================================== -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          /* Font Families */
+          fontFamily: {
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          /* Botanical & Warm Dusk Color Palette */
+          colors: {
+            alabaster: '#FAF9F6',     /* Primary luminous warm off-white canvas */
+            sagemist: '#E4ECE7',      /* Soft misty sage for organic gradients & badges */
+            sand: '#F2EFE9',          /* Warm stone-sand for alternating section surfaces */
+            sunriseglow: '#F5E2D6',   /* Golden-terracotta sunrise halo behind hero art */
+            forest: {
+              DEFAULT: '#1E3A2F',     /* Deep grounding forest green for primary CTAs */
+              dark: '#152A22',        /* Deeper forest shade for hover states */
+              light: '#2C5243',       /* Mid-tone botanical green */
+            },
+            sage: {
+              DEFAULT: '#7C9A82',     /* Calming muted sage leaf accent */
+              soft: '#E4ECE7',        /* Subtle sage tint for icon containers */
+            },
+            terracotta: {
+              DEFAULT: '#D98A6C',     /* Warm sunset terracotta accent */
+              soft: '#F8EBE5',        /* Soft blush-terracotta tint */
+            },
+            charcoal: '#1C2420',      /* High-contrast organic ink for primary text */
+            slate: '#5A6560',         /* Muted slate-green for secondary body copy */
+          },
+          /* Soft Atmospheric Box Shadows */
+          boxShadow: {
+            soft: '0 12px 32px -10px rgba(28, 36, 32, 0.07)',
+            elevated: '0 24px 52px -14px rgba(30, 58, 47, 0.16)',
+            glass: '0 20px 50px -12px rgba(30, 58, 47, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- ========================================================================
+       CUSTOM CSS KEYFRAMES & HERO ATMOSPHERE STYLES
+       1. Multi-layered organic radial mesh gradient for the Hero Banner
+       2. Slow ambient breathing/floating keyframes for blurred light orbs
+       3. Natural S-curve falling leaf trajectories with wind sway & flutter
+       4. Meditation illustration breathing rings, floating silhouette & ripples
+       5. Accessibility support via prefers-reduced-motion
+       ======================================================================== -->
+  <style>
+    /* Multi-layered warm organic mesh gradient for the Hero Banner */
+    .hero-organic-mesh {
+      background-color: #FAF9F6;
+      background-image:
+        /* Golden-terracotta sunrise glow positioned behind the right-side illustration */
+        radial-gradient(circle at 76% 42%, rgba(245, 226, 214, 0.92) 0%, rgba(245, 226, 214, 0) 48%),
+        /* Soft sage mist pocket drifting across the upper-left behind the headline */
+        radial-gradient(circle at 18% 24%, rgba(228, 236, 231, 0.88) 0%, rgba(228, 236, 231, 0) 52%),
+        /* Warm sand ground tone anchoring the lower hero horizon */
+        radial-gradient(ellipse at 52% 88%, rgba(242, 239, 233, 0.95) 0%, rgba(250, 249, 246, 0) 65%);
+    }
+
+    /* Ambient blurred light orb slow breathing & gentle drift */
+    @keyframes orbBreathe {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.55;
+      }
+      50% {
+        transform: translate3d(14px, -18px, 0) scale(1.09);
+        opacity: 0.85;
+      }
+    }
+
+    .animate-orb-slow {
+      animation: orbBreathe 11s ease-in-out infinite;
+    }
+
+    .animate-orb-delayed {
+      animation: orbBreathe 14s ease-in-out infinite 3.5s;
+    }
+
+    /* Falling Leaf Trajectory A: Drifts gently right-then-left while rotating */
+    @keyframes leafFallRight {
+      0% {
+        transform: translate3d(0, -12vh, 0) rotate(0deg) rotateY(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      35% {
+        transform: translate3d(34px, 28vh, 0) rotate(95deg) rotateY(45deg);
+      }
+      70% {
+        transform: translate3d(-26px, 68vh, 0) rotate(215deg) rotateY(-35deg);
+      }
+      90% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      100% {
+        transform: translate3d(22px, 108vh, 0) rotate(330deg) rotateY(25deg);
+        opacity: 0;
+      }
+    }
+
+    /* Falling Leaf Trajectory B: Drifts gently left-then-right for organic variety */
+    @keyframes leafFallLeft {
+      0% {
+        transform: translate3d(0, -12vh, 0) rotate(15deg) rotateY(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--leaf-opacity, 0.6);
+      }
+      35% {
+        transform: translate3d(-36px, 30vh, 0) rotate(-85deg) rotateY(-45deg);
+      }
+      70% {
+        transform: translate3d(28px, 70vh, 0) rotate(-205deg) rotateY(40deg);
+      }
+      90% {
+        opacity: var(--leaf-opacity, 0.6);
+      }
+      100% {
+        transform: translate3d(-18px, 108vh, 0) rotate(-315deg) rotateY(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* Base helper class for GPU-accelerated falling leaf wrappers */
+    .falling-leaf {
+      position: absolute;
+      top: -6%;
+      will-change: transform, opacity;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    /* Concentric breathing aura rings inside the Dusk Meditation SVG */
+    @keyframes breatheOuter {
+      0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.30;
+      }
+      50% {
+        transform: scale(1.06);
+        opacity: 0.68;
+      }
+    }
+
+    @keyframes breatheInner {
+      0%, 100% {
+        transform: scale(0.97);
+        opacity: 0.45;
+      }
+      50% {
+        transform: scale(1.04);
+        opacity: 0.88;
+      }
+    }
+
+    /* Subtle levitation for the meditating figure */
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* Soft shimmer for the reflective lake ripples */
+    @keyframes waterShimmer {
+      0%, 100% {
+        opacity: 0.16;
+        transform: scaleX(0.96);
+      }
+      50% {
+        opacity: 0.36;
+        transform: scaleX(1.04);
+      }
+    }
+
+    .animate-breathe-outer {
+      transform-origin: 250px 210px;
+      animation: breatheOuter 7s ease-in-out infinite;
+    }
+
+    .animate-breathe-inner {
+      transform-origin: 250px 210px;
+      animation: breatheInner 7s ease-in-out infinite 0.45s;
+    }
+
+    .animate-float-calm {
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    .animate-ripple {
+      transform-origin: 250px 395px;
+      animation: waterShimmer 5.5s ease-in-out infinite;
+    }
+
+    /* Respect user motion preferences for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-orb-slow,
+      .animate-orb-delayed,
+      .falling-leaf,
+      .animate-breathe-outer,
+      .animate-breathe-inner,
+      .animate-float-calm,
+      .animate-ripple {
+        animation: none !important;
+      }
+      .falling-leaf {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-alabaster text-charcoal font-sans antialiased selection:bg-sage/25 selection:text-forest overflow-x-hidden">
+
+  <!-- ========================================================================
+       1. STICKY HEADER / NAVIGATION
+       - Custom inline SVG lotus logo + Stillness brand mark
+       - Desktop anchor links (Home, Features, About, Pricing)
+       - Form-free Login & Sign up buttons
+       - Pure-CSS mobile menu drawer using Tailwind's `peer` & `peer-checked:`
+       ======================================================================== -->
+  <header class="sticky top-0 z-50 bg-alabaster/85 backdrop-blur-md border-b border-charcoal/10">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="relative flex items-center justify-between h-20">
+
+        <!-- Brand Logo with Custom Botanical Lotus Emblem -->
+        <a href="#home" class="inline-flex items-center gap-2.5 py-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-forest rounded-lg" aria-label="Stillness Home">
+          <svg class="w-9 h-9 shrink-0 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="18" cy="18" r="17" fill="#E4ECE7" stroke="#1E3A2F" stroke-width="1.5" />
+            <!-- Center Lotus Petal -->
+            <path d="M18 8C15.2 12.2 14.5 16.5 18 22.5C21.5 16.5 20.8 12.2 18 8Z" fill="#1E3A2F" />
+            <!-- Left Lotus Petal -->
+            <path d="M18 22.5C13.8 21.8 10.5 18.8 9.5 14.5C13.4 15.2 16.2 17.8 18 22.5Z" fill="#7C9A82" />
+            <!-- Right Lotus Petal -->
+            <path d="M18 22.5C22.2 21.8 25.5 18.8 26.5 14.5C22.6 15.2 19.8 17.8 18 22.5Z" fill="#7C9A82" />
+            <!-- Grounding Horizon Arc -->
+            <path d="M11 25.5C13.8 26.8 22.2 26.8 25 25.5" stroke="#D98A6C" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+          <span class="font-serif text-2xl font-semibold tracking-tight text-charcoal">Stillness</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Primary Navigation">
+          <a href="#home" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Home</a>
+          <a href="#features" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Features</a>
+          <a href="#about" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">About</a>
+          <a href="#pricing" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Pricing</a>
+        </nav>
+
+        <!-- Desktop Auth Actions (No Form Required) -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#pricing" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-charcoal hover:text-forest hover:bg-sand rounded-full transition-colors">
+            Login
+          </a>
+          <a href="#pricing" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-forest hover:bg-forest-dark rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5">
+            Sign up
+          </a>
+        </div>
+
+        <!-- Pure-CSS Mobile Menu Toggle (`peer` Checkbox + Accessible Label) -->
+        <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" aria-label="Toggle navigation menu" />
+        <label for="mobile-nav-toggle" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-charcoal hover:bg-sand cursor-pointer transition-colors" aria-hidden="true">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
+        </label>
+
+        <!-- Pure-CSS Mobile Dropdown Drawer -->
+        <div class="hidden peer-checked:flex md:hidden flex-col gap-2 absolute top-full left-0 right-0 mt-2 p-5 bg-alabaster/95 backdrop-blur-md border border-charcoal/10 rounded-3xl shadow-elevated">
+          <nav class="flex flex-col divide-y divide-charcoal/10" aria-label="Mobile Navigation">
+            <a href="#home" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Home</a>
+            <a href="#features" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Features</a>
+            <a href="#about" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">About</a>
+            <a href="#pricing" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Pricing</a>
+          </nav>
+          <div class="pt-3 mt-1 border-t border-charcoal/10 flex flex-col sm:flex-row gap-2.5">
+            <a href="#pricing" class="w-full inline-flex items-center justify-center py-3 px-5 text-sm font-semibold text-charcoal bg-sand hover:bg-charcoal/10 rounded-full transition-colors">
+              Login
+            </a>
+            <a href="#pricing" class="w-full inline-flex items-center justify-center py-3 px-5 text-sm font-semibold text-white bg-forest hover:bg-forest-dark rounded-full transition-colors">
+              Sign up
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         2. ENHANCED HERO BANNER (#home)
+         Features:
+         - Rich multi-layered organic mesh background (.hero-organic-mesh)
+         - Blurred ambient light orbs with slow breathing CSS animations
+         - Full-bleed falling botanical leaves layer (12 custom SVG leaves)
+         - Two-column layout: editorial copy + frosted-glass Dusk Meditation card
+         - Subtle curved botanical wave divider transitioning into Features
+         ====================================================================== -->
+    <section id="home" class="hero-organic-mesh relative overflow-hidden pt-14 pb-24 sm:pt-20 sm:pb-32 lg:pt-24 lg:pb-36 scroll-mt-20">
+
+      <!-- LAYER A: Blurred Ambient Atmospheric Light Orbs -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        <!-- Upper-Left Soft Sage Mist Orb -->
+        <div class="animate-orb-slow absolute -top-20 -left-16 w-80 h-80 sm:w-[28rem] sm:h-[28rem] rounded-full bg-sagemist/80 blur-3xl"></div>
+        <!-- Right-Side Golden-Terracotta Sunrise Halo behind the Illustration -->
+        <div class="animate-orb-delayed absolute top-12 right-[4%] w-80 h-80 sm:w-[32rem] sm:h-[32rem] rounded-full bg-sunriseglow/90 blur-3xl"></div>
+        <!-- Lower-Center Warm Sand Light Pool -->
+        <div class="animate-orb-slow absolute bottom-8 left-1/3 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-sand/90 blur-3xl"></div>
+      </div>
+
+      <!-- LAYER B: Falling Botanical Leaves Animation (12 Custom Inline SVG Leaves)
+           Uses staggered durations (11s-19s) and negative delays so leaves are
+           already gracefully mid-fall immediately when the page loads. -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+
+        <!-- Leaf 1: Sage Leaf (Left Edge) -->
+        <div class="falling-leaf left-[4%] w-6 h-6 text-sage" style="--leaf-opacity: 0.62; animation-name: leafFallRight; animation-duration: 14s; animation-delay: -3s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.85" />
+            <path d="M5 25C11 19 18 13 27 5" stroke="#1E3A2F" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 2: Warm Terracotta Leaf (Upper-Left) -->
+        <div class="falling-leaf left-[13%] w-5 h-5 text-terracotta" style="--leaf-opacity: 0.52; animation-name: leafFallLeft; animation-duration: 17s; animation-delay: -9s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.85" />
+            <path d="M16 4V28" stroke="#FAF9F6" stroke-opacity="0.45" stroke-width="1.1" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 3: Eucalyptus Leaf (Left-Center) -->
+        <div class="falling-leaf left-[23%] w-7 h-7 text-forest-light" style="--leaf-opacity: 0.42; animation-name: leafFallRight; animation-duration: 19s; animation-delay: -14s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M26 6C15 7 8 14 6 26C18 24 25 17 26 6Z" fill="currentColor" fill-opacity="0.75" />
+            <path d="M7 25L25 7" stroke="#FAF9F6" stroke-opacity="0.35" stroke-width="1.1" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 4: Soft Sage Leaf (Center-Left) -->
+        <div class="falling-leaf left-[33%] w-4 h-4 text-sage" style="--leaf-opacity: 0.68; animation-name: leafFallLeft; animation-duration: 12s; animation-delay: -5s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" />
+          </svg>
+        </div>
+
+        <!-- Leaf 5: Terracotta Teardrop Leaf (Center) -->
+        <div class="falling-leaf left-[43%] w-6 h-6 text-terracotta" style="--leaf-opacity: 0.48; animation-name: leafFallRight; animation-duration: 16s; animation-delay: -11s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.8" />
+            <path d="M16 5V27" stroke="#1E3A2F" stroke-opacity="0.25" stroke-width="1.1" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 6: Sage Botanical Leaf (Center-Right) -->
+        <div class="falling-leaf left-[51%] w-5 h-5 text-sage" style="--leaf-opacity: 0.58; animation-name: leafFallLeft; animation-duration: 13.5s; animation-delay: -2s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.9" />
+            <path d="M6 24L26 6" stroke="#1E3A2F" stroke-opacity="0.3" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 7: Eucalyptus Oval Leaf (Behind Illustration Left) -->
+        <div class="falling-leaf left-[60%] w-7 h-7 text-forest-light" style="--leaf-opacity: 0.38; animation-name: leafFallRight; animation-duration: 18s; animation-delay: -7.5s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.8" />
+          </svg>
+        </div>
+
+        <!-- Leaf 8: Warm Terracotta Leaf (Behind Illustration Top) -->
+        <div class="falling-leaf left-[69%] w-5 h-5 text-terracotta" style="--leaf-opacity: 0.62; animation-name: leafFallLeft; animation-duration: 11.5s; animation-delay: -4s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" />
+            <path d="M6 24L26 6" stroke="#FAF9F6" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 9: Sage Leaf (Behind Illustration Right) -->
+        <div class="falling-leaf left-[78%] w-8 h-8 text-sage" style="--leaf-opacity: 0.45; animation-name: leafFallRight; animation-duration: 16.5s; animation-delay: -12.5s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.85" />
+            <path d="M5 25C11 19 18 13 27 5" stroke="#1E3A2F" stroke-opacity="0.3" stroke-width="1.2" stroke-linecap="round" />
+          </svg>
+        </div>
+
+        <!-- Leaf 10: Small Eucalyptus Leaf (Outer Right) -->
+        <div class="falling-leaf left-[86%] w-4 h-4 text-forest-light" style="--leaf-opacity: 0.55; animation-name: leafFallLeft; animation-duration: 13s; animation-delay: -8.5s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" />
+          </svg>
+        </div>
+
+        <!-- Leaf 11: Terracotta Leaf (Far Right Edge) -->
+        <div class="falling-leaf left-[93%] w-6 h-6 text-terracotta" style="--leaf-opacity: 0.50; animation-name: leafFallRight; animation-duration: 15s; animation-delay: -1s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.85" />
+          </svg>
+        </div>
+
+        <!-- Leaf 12: Delicate Sage Leaf (Mid-Left High) -->
+        <div class="falling-leaf left-[18%] w-5 h-5 text-sage" style="--leaf-opacity: 0.56; animation-name: leafFallRight; animation-duration: 18.5s; animation-delay: -15.5s;">
+          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" />
+          </svg>
+        </div>
+
+      </div>
+
+      <!-- LAYER C: Foreground Hero Content Container -->
+      <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-10">
+
+          <!-- Left Column: Editorial Headline, Description & CTA -->
+          <div class="lg:col-span-6 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+
+            <!-- Eyebrow Pill Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-sage/30 text-forest text-xs font-semibold uppercase tracking-wider shadow-sm mb-6">
+              <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse" aria-hidden="true"></span>
+              <span>Evidence-based mindfulness</span>
+            </div>
+
+            <!-- Attractive Editorial Serif Headline -->
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-medium text-charcoal leading-[1.12] tracking-tight mb-6">
+              Find <span class="italic font-normal text-forest">quiet clarity</span> in the middle of a busy day.
+            </h1>
+
+            <!-- Calming Short Description -->
+            <p class="text-base sm:text-lg text-slate leading-relaxed mb-8">
+              Step away from constant notifications with guided meditations, restorative sleep stories, and gentle daily breathwork crafted to steady your mind in minutes.
+            </p>
+
+            <!-- Primary & Secondary CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-6">
+              <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 text-base font-semibold text-white bg-forest hover:bg-forest-dark rounded-full shadow-elevated transition-all duration-300 hover:-translate-y-0.5">
+                <span>Start Free Trial</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+
+              <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-3.5 text-sm font-semibold text-forest hover:text-forest-dark bg-white/60 hover:bg-white/90 border border-charcoal/10 rounded-full transition-colors">
+                <span>Explore features</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Subtle Trust Note -->
+            <p class="inline-flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-medium text-slate">
+              <svg class="w-4 h-4 text-sage shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+              <span>No credit card needed for Free plan &bull; Cancel anytime</span>
+            </p>
+          </div>
+
+          <!-- Right Column: Frosted-Glass Framed Dusk Meditation Illustration -->
+          <div class="lg:col-span-6 flex justify-center">
+            <div class="relative w-full max-w-[495px]">
+              <!-- Soft Golden-Terracotta Sunrise Halo Behind the Frame -->
+              <div class="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-sage/25 via-sunriseglow/70 to-terracotta/25 blur-2xl -z-10" aria-hidden="true"></div>
+
+              <!-- Frosted Glass Outer Visual Card -->
+              <div class="w-full aspect-square rounded-[2.5rem] bg-white/55 backdrop-blur-md p-3.5 sm:p-5 border border-white/80 shadow-glass">
+                <svg class="w-full h-full rounded-[2rem]" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a calm figure meditating by a still mountain lake at dusk under a crescent moon and glowing breathing rings">
+                  <defs>
+                    <!-- Dusk Horizon Sky Gradient -->
+                    <linearGradient id="duskHorizon" x1="250" y1="0" x2="250" y2="370" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#1E3A2F" />
+                      <stop offset="44%" stop-color="#486C5B" />
+                      <stop offset="80%" stop-color="#D98A6C" />
+                      <stop offset="100%" stop-color="#F5E2D6" />
+                    </linearGradient>
+
+                    <!-- Soft Radial Aura Around Meditator -->
+                    <radialGradient id="breathAura" cx="50%" cy="42%" r="44%">
+                      <stop offset="0%" stop-color="#FFFDF9" stop-opacity="0.78" />
+                      <stop offset="55%" stop-color="#F5E2D6" stop-opacity="0.28" />
+                      <stop offset="100%" stop-color="#F5E2D6" stop-opacity="0" />
+                    </radialGradient>
+
+                    <!-- Still Lake Water Gradient -->
+                    <linearGradient id="lakeWater" x1="250" y1="340" x2="250" y2="500" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#355648" />
+                      <stop offset="45%" stop-color="#243E33" />
+                      <stop offset="100%" stop-color="#152A22" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Sky Backdrop -->
+                  <rect width="500" height="360" fill="url(#duskHorizon)" />
+
+                  <!-- Soft Sun / Breath Glow -->
+                  <circle cx="250" cy="210" r="195" fill="url(#breathAura)" />
+
+                  <!-- Animated Concentric Breathing Rings -->
+                  <circle class="animate-breathe-outer" cx="250" cy="210" r="146" stroke="#FAF9F6" stroke-width="1.5" stroke-dasharray="6 8" />
+                  <circle class="animate-breathe-inner" cx="250" cy="210" r="108" fill="#FAF9F6" fill-opacity="0.11" stroke="#FAF9F6" stroke-width="1.5" />
+
+                  <!-- Crescent Moon & Evening Stars -->
+                  <path d="M376 74C362 78 353 92 356 107C359 121 372 130 386 128C371 135 353 128 346 113C339 98 346 80 361 73C366 71 371 72 376 74Z" fill="#FAF9F6" fill-opacity="0.92" />
+                  <circle cx="118" cy="84" r="2.3" fill="#FAF9F6" fill-opacity="0.82" />
+                  <circle cx="165" cy="58" r="1.7" fill="#FAF9F6" fill-opacity="0.65" />
+                  <circle cx="312" cy="54" r="2" fill="#FAF9F6" fill-opacity="0.78" />
+                  <circle cx="416" cy="134" r="1.8" fill="#FAF9F6" fill-opacity="0.6" />
+                  <circle cx="88" cy="148" r="2" fill="#FAF9F6" fill-opacity="0.55" />
+
+                  <!-- Distant Misty Mountain Silhouettes -->
+                  <path d="M0 288L88 228L176 276L272 214L374 274L448 232L500 264V350H0V288Z" fill="#2C5243" fill-opacity="0.68" />
+                  <path d="M0 308L118 258L218 298L332 246L426 294L500 266V355H0V308Z" fill="#1E3A2F" fill-opacity="0.88" />
+
+                  <!-- Reflective Dusk Water Surface -->
+                  <rect y="340" width="500" height="160" fill="url(#lakeWater)" />
+
+                  <!-- Warm Sunset Reflection & Animated Water Ripples -->
+                  <ellipse cx="250" cy="354" rx="95" ry="7" fill="#F5E2D6" fill-opacity="0.26" />
+                  <g class="animate-ripple">
+                    <line x1="168" y1="376" x2="332" y2="376" stroke="#FAF9F6" stroke-opacity="0.26" stroke-width="2" stroke-linecap="round" />
+                    <line x1="196" y1="398" x2="304" y2="398" stroke="#FAF9F6" stroke-opacity="0.20" stroke-width="1.8" stroke-linecap="round" />
+                    <line x1="132" y1="422" x2="215" y2="422" stroke="#7C9A82" stroke-opacity="0.30" stroke-width="1.8" stroke-linecap="round" />
+                    <line x1="292" y1="434" x2="376" y2="434" stroke="#7C9A82" stroke-opacity="0.26" stroke-width="1.8" stroke-linecap="round" />
+                    <line x1="212" y1="458" x2="288" y2="458" stroke="#FAF9F6" stroke-opacity="0.16" stroke-width="1.6" stroke-linecap="round" />
+                  </g>
+
+                  <!-- Foreground Shore / Stone Outcrop -->
+                  <path d="M95 344C145 322 355 322 405 344C365 356 135 356 95 344Z" fill="#152A22" />
+
+                  <!-- Calm Meditating Figure -->
+                  <g class="animate-float-calm">
+                    <!-- Cushion Shadow -->
+                    <ellipse cx="250" cy="336" rx="74" ry="11" fill="#0F1F19" fill-opacity="0.45" />
+
+                    <!-- Hair Bun & Head -->
+                    <circle cx="250" cy="176" r="11" fill="#1C2420" />
+                    <circle cx="250" cy="197" r="20" fill="#F3D3C1" />
+                    <!-- Peaceful Closed Eyes -->
+                    <path d="M242 197C244 199.2 246.5 199.2 248.5 197" stroke="#1C2420" stroke-width="1.7" stroke-linecap="round" />
+                    <path d="M251.5 197C253.5 199.2 256 199.2 258 197" stroke="#1C2420" stroke-width="1.7" stroke-linecap="round" />
+
+                    <!-- Terracotta Meditation Shawl / Tunic -->
+                    <path d="M217 238C221 223 234 218 250 218C266 218 279 223 283 238L298 308H202L217 238Z" fill="#D98A6C" />
+                    <path d="M227 221C235 239 242 248 250 248C258 248 265 239 273 221" stroke="#FAF9F6" stroke-width="2" stroke-opacity="0.6" fill="none" />
+
+                    <!-- Crossed Lotus Legs -->
+                    <path d="M180 325C180 308 208 300 250 300C292 300 320 308 320 325C320 335 290 338 250 338C210 338 180 335 180 325Z" fill="#1E3A2F" />
+
+                    <!-- Relaxed Arms Resting on Knees -->
+                    <path d="M218 240C202 262 193 286 190 308" stroke="#F3D3C1" stroke-width="10" stroke-linecap="round" />
+                    <path d="M282 240C298 262 307 286 310 308" stroke="#F3D3C1" stroke-width="10" stroke-linecap="round" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- LAYER D: Subtle Curved Botanical Wave Divider at Bottom of Hero -->
+      <div class="absolute bottom-0 left-0 right-0 pointer-events-none leading-none z-10" aria-hidden="true">
+        <svg class="w-full h-10 sm:h-16 text-alabaster" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="currentColor">
+          <!-- Soft secondary sage hill accent behind the main wave -->
+          <path d="M0,42 C360,84 1080,6 1440,48 L1440,80 L0,80 Z" fill="#E4ECE7" fill-opacity="0.65" />
+          <!-- Primary alabaster wave seamlessly bridging into the Features section -->
+          <path d="M0,56 C440,14 980,82 1440,36 L1440,80 L0,80 Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. FEATURES SECTION (#features)
+         - 4 responsive feature cards: Meditation sessions, Sleep stories,
+           Stress management, and Daily mindfulness
+         ====================================================================== -->
+    <section id="features" class="py-20 sm:py-24 scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-sage-soft text-forest text-xs font-semibold uppercase tracking-wider mb-4">
+            Core Practices
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-[2.65rem] font-medium text-charcoal leading-tight mb-4">
+            Designed to support every rhythm of your day
+          </h2>
+          <p class="text-base sm:text-lg text-slate leading-relaxed">
+            Whether you have two minutes between meetings or thirty minutes before sleep, Stillness meets you with calm, distraction-free guidance.
+          </p>
+        </div>
+
+        <!-- 4-Card Responsive Feature Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Card 1: Meditation Sessions -->
+          <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
+            <div class="w-14 h-14 rounded-2xl bg-sage-soft text-forest flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 3v2M12 19v2M3 12h2M19 12h2" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-charcoal mb-3">Meditation sessions</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6 flex-grow">
+              Guided audio practices from 3 to 30 minutes tailored for steady focus, emotional balance, and deep inner stillness.
+            </p>
+            <span class="self-start text-xs font-semibold text-forest bg-sand px-3 py-1.5 rounded-full">
+              3 &ndash; 30 min sessions
+            </span>
+          </article>
+
+          <!-- Card 2: Sleep Stories -->
+          <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
+            <div class="w-14 h-14 rounded-2xl bg-terracotta-soft text-terracotta flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                <path d="M19 3v4M21 5h-4" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-charcoal mb-3">Sleep stories</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6 flex-grow">
+              Soothing bedtime narratives, gentle voice narration, and natural ambient soundscapes engineered to quiet racing thoughts.
+            </p>
+            <span class="self-start text-xs font-semibold text-forest bg-sand px-3 py-1.5 rounded-full">
+              80+ bedtime tales
+            </span>
+          </article>
+
+          <!-- Card 3: Stress Management -->
+          <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
+            <div class="w-14 h-14 rounded-2xl bg-sage-soft text-forest flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+                <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+                <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-charcoal mb-3">Stress management</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6 flex-grow">
+              Rapid 2-minute SOS breathwork resets and somatic grounding techniques to down-regulate anxiety in overwhelming moments.
+            </p>
+            <span class="self-start text-xs font-semibold text-forest bg-sand px-3 py-1.5 rounded-full">
+              Instant SOS resets
+            </span>
+          </article>
+
+          <!-- Card 4: Daily Mindfulness -->
+          <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
+            <div class="w-14 h-14 rounded-2xl bg-terracotta-soft text-terracotta flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+              </svg>
+            </div>
+            <h3 class="font-serif text-xl font-medium text-charcoal mb-3">Daily mindfulness</h3>
+            <p class="text-sm text-slate leading-relaxed mb-6 flex-grow">
+              Gentle morning intention check-ins, reflective gratitude prompts, and mindful pauses that cultivate lasting presence.
+            </p>
+            <span class="self-start text-xs font-semibold text-forest bg-sand px-3 py-1.5 rounded-full">
+              Daily check-ins
+            </span>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. ABOUT SECTION (#about)
+         - Mindfulness philosophy & neuroscience-backed approach
+         - 3 clean community and clinical impact metric cards
+         ====================================================================== -->
+    <section id="about" class="py-20 sm:py-24 bg-sand border-y border-charcoal/10 scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12">
+
+          <!-- Left Editorial Philosophy -->
+          <div class="lg:col-span-7">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-white text-forest text-xs font-semibold uppercase tracking-wider mb-4 border border-charcoal/10">
+              About Stillness
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-medium text-charcoal leading-tight mb-5">
+              Neuroscience-informed wellness, without streaks, guilt, or digital clutter.
+            </h2>
+            <p class="text-base text-slate leading-relaxed mb-4">
+              Most wellness apps compete for your screen time with noisy badges and endless notifications. We created Stillness as the quiet antidote—a calm, human-centered sanctuary built alongside clinical psychologists and contemplative teachers.
+            </p>
+            <p class="text-base text-slate leading-relaxed">
+              Every session uses evidence-based breathing pacing and warm acoustic design to help your nervous system shift naturally from fight-or-flight into sustainable calm.
+            </p>
+          </div>
+
+          <!-- Right 3 Clean Community & Impact Metric Cards -->
+          <div class="lg:col-span-5 flex flex-col gap-4" aria-label="Stillness Impact Metrics">
+            <div class="bg-white rounded-2xl p-6 border border-charcoal/10 shadow-soft flex items-center justify-between gap-4 hover:border-sage transition-colors">
+              <div>
+                <h3 class="font-semibold text-charcoal text-base">500+ Guided Sessions</h3>
+                <p class="text-sm text-slate mt-0.5">Curated for calm, focus &amp; restful sleep</p>
+              </div>
+              <span class="font-serif text-2xl sm:text-3xl font-semibold text-forest shrink-0">500+</span>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-charcoal/10 shadow-soft flex items-center justify-between gap-4 hover:border-sage transition-colors">
+              <div>
+                <h3 class="font-semibold text-charcoal text-base">10 Min Daily Habit</h3>
+                <p class="text-sm text-slate mt-0.5">Measurable drop in daily stress in 2 weeks</p>
+              </div>
+              <span class="font-serif text-2xl sm:text-3xl font-semibold text-forest shrink-0">10m</span>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 border border-charcoal/10 shadow-soft flex items-center justify-between gap-4 hover:border-sage transition-colors">
+              <div>
+                <h3 class="font-semibold text-charcoal text-base">4.9&#9733; Member Rating</h3>
+                <p class="text-sm text-slate mt-0.5">Loved by 120,000+ mindful practitioners</p>
+              </div>
+              <span class="font-serif text-2xl sm:text-3xl font-semibold text-terracotta shrink-0">4.9&#9733;</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. TESTIMONIALS SECTION (#testimonials)
+         - 3 authentic customer stories with 5-star ratings
+         ====================================================================== -->
+    <section id="testimonials" class="py-20 sm:py-24 scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-sage-soft text-forest text-xs font-semibold uppercase tracking-wider mb-4">
+            Member Stories
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-medium text-charcoal leading-tight mb-4">
+            A calmer mind changes everything
+          </h2>
+          <p class="text-base sm:text-lg text-slate leading-relaxed">
+            Real reflections from members who have made Stillness part of their daily rhythm.
+          </p>
+        </div>
+
+        <!-- 3 Customer Review Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+
+          <!-- Testimonial 1 -->
+          <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-amber-500 mb-5" aria-label="5 out of 5 stars">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <blockquote class="text-charcoal text-base leading-relaxed mb-7">
+                &ldquo;I used to lie awake replaying work conversations until 2 a.m. The sleep stories on Stillness have completely transformed my nights—I drift off effortlessly every single evening.&rdquo;
+              </blockquote>
+            </div>
+            <footer class="flex items-center gap-3.5 pt-5 border-t border-charcoal/10">
+              <div class="w-11 h-11 rounded-full bg-sage-soft text-forest font-serif font-semibold flex items-center justify-center shrink-0" aria-hidden="true">
+                EM
+              </div>
+              <div>
+                <div class="font-semibold text-sm text-charcoal">Elena Morales</div>
+                <div class="text-xs text-slate">Product Designer &bull; Seattle</div>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Testimonial 2 -->
+          <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-amber-500 mb-5" aria-label="5 out of 5 stars">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <blockquote class="text-charcoal text-base leading-relaxed mb-7">
+                &ldquo;Working in emergency medicine keeps my nervous system on high alert. The two-minute SOS breathwork resets help me decompress in my car before coming home to my kids.&rdquo;
+              </blockquote>
+            </div>
+            <footer class="flex items-center gap-3.5 pt-5 border-t border-charcoal/10">
+              <div class="w-11 h-11 rounded-full bg-terracotta-soft text-terracotta font-serif font-semibold flex items-center justify-center shrink-0" aria-hidden="true">
+                DK
+              </div>
+              <div>
+                <div class="font-semibold text-sm text-charcoal">David Kim</div>
+                <div class="text-xs text-slate">Emergency Nurse &bull; Chicago</div>
+              </div>
+            </footer>
+          </article>
+
+          <!-- Testimonial 3 -->
+          <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
+            <div>
+              <div class="flex items-center gap-1 text-amber-500 mb-5" aria-label="5 out of 5 stars">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <blockquote class="text-charcoal text-base leading-relaxed mb-7">
+                &ldquo;Unlike apps that feel crowded or pushy, Stillness feels like opening a window to fresh morning air. Ten quiet minutes with my coffee has made me noticeably more grounded.&rdquo;
+              </blockquote>
+            </div>
+            <footer class="flex items-center gap-3.5 pt-5 border-t border-charcoal/10">
+              <div class="w-11 h-11 rounded-full bg-sage-soft text-forest font-serif font-semibold flex items-center justify-center shrink-0" aria-hidden="true">
+                SR
+              </div>
+              <div>
+                <div class="font-semibold text-sm text-charcoal">Sophia Reynolds</div>
+                <div class="text-xs text-slate">High School Teacher &bull; Austin</div>
+              </div>
+            </footer>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. PRICING SECTION (#pricing)
+         - 3 transparent tiers: Free Plan, Monthly Plan, Yearly Plan (Featured)
+         ====================================================================== -->
+    <section id="pricing" class="py-20 sm:py-24 bg-sand border-t border-charcoal/10 scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="inline-block px-4 py-1.5 rounded-full bg-white text-forest text-xs font-semibold uppercase tracking-wider mb-4 border border-charcoal/10">
+            Transparent Pricing
+          </span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-medium text-charcoal leading-tight mb-4">
+            Begin your practice at your own pace
+          </h2>
+          <p class="text-base sm:text-lg text-slate leading-relaxed">
+            Enjoy our core daily tools free forever, or unlock the full sanctuary with a 14-day free trial.
+          </p>
+        </div>
+
+        <!-- 3-Column Comparison Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-xl lg:max-w-none mx-auto">
+
+          <!-- Plan 1: Free Plan -->
+          <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col">
+            <h3 class="font-serif text-2xl font-medium text-charcoal mb-1.5">Free</h3>
+            <p class="text-sm text-slate mb-6">Essential tools to build a gentle daily habit.</p>
+
+            <div class="flex items-baseline gap-1.5 mb-1">
+              <span class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">$0</span>
+              <span class="text-sm font-medium text-slate">/ forever</span>
+            </div>
+            <p class="text-xs font-semibold text-forest mb-6">No credit card required</p>
+
+            <ul class="space-y-3.5 pt-6 border-t border-charcoal/10 mb-8 flex-grow text-sm text-charcoal">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-sage shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>10 foundational guided meditations</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-sage shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Interactive 3-minute breathing pacer</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-sage shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Daily mood &amp; gratitude reflection</span>
+              </li>
+            </ul>
+
+            <a href="#home" class="w-full inline-flex items-center justify-center py-3.5 px-6 text-sm font-semibold text-forest border border-forest/30 hover:bg-sage-soft rounded-full transition-colors">
+              Get Started Free
+            </a>
+          </article>
+
+          <!-- Plan 2: Monthly Plan -->
+          <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col">
+            <h3 class="font-serif text-2xl font-medium text-charcoal mb-1.5">Monthly</h3>
+            <p class="text-sm text-slate mb-6">Flexible month-to-month access to everything.</p>
+
+            <div class="flex items-baseline gap-1.5 mb-1">
+              <span class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">$12.99</span>
+              <span class="text-sm font-medium text-slate">/ month</span>
+            </div>
+            <p class="text-xs font-semibold text-forest mb-6">Billed monthly &bull; Cancel anytime</p>
+
+            <ul class="space-y-3.5 pt-6 border-t border-charcoal/10 mb-8 flex-grow text-sm text-charcoal">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-sage shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Full library of 500+ guided meditations</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-sage shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>All 80+ sleep stories &amp; nature soundscapes</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-sage shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Offline audio downloads for flights &amp; travel</span>
+              </li>
+            </ul>
+
+            <a href="#home" class="w-full inline-flex items-center justify-center py-3.5 px-6 text-sm font-semibold text-forest border border-forest/30 hover:bg-sage-soft rounded-full transition-colors">
+              Choose Monthly
+            </a>
+          </article>
+
+          <!-- Plan 3: Yearly Plan (Featured Card) -->
+          <article class="relative bg-white rounded-3xl p-8 border-2 border-forest shadow-elevated flex flex-col lg:-translate-y-2">
+            <!-- Most Popular Pill Badge -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-terracotta text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">
+              Most Popular &bull; Save 55%
+            </div>
+
+            <h3 class="font-serif text-2xl font-medium text-charcoal mb-1.5">Yearly</h3>
+            <p class="text-sm text-slate mb-6">Our complete sanctuary for lasting calm &amp; sleep.</p>
+
+            <div class="flex items-baseline gap-1.5 mb-1">
+              <span class="font-serif text-4xl sm:text-5xl font-semibold text-charcoal">$69.99</span>
+              <span class="text-sm font-medium text-slate">/ year</span>
+            </div>
+            <p class="text-xs font-semibold text-forest mb-6">Just $5.83/month &bull; Includes 14-day free trial</p>
+
+            <ul class="space-y-3.5 pt-6 border-t border-charcoal/10 mb-8 flex-grow text-sm text-charcoal">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-forest shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Everything in Monthly, plus 14-day free trial</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-forest shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>Multi-week guided stress &amp; sleep courses</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-forest shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                <span>New weekly sleep stories &amp; live teacher workshops</span>
+              </li>
+            </ul>
+
+            <a href="#home" class="w-full inline-flex items-center justify-center py-4 px-6 text-sm font-semibold text-white bg-forest hover:bg-forest-dark rounded-full shadow-md transition-all duration-200 hover:-translate-y-0.5">
+              Start 14-Day Free Trial
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       7. FOOTER
+       - Brand SVG logo & mission statement
+       - Quick links, Contact information, Social media icons & Privacy Policy
+       ======================================================================== -->
+  <footer class="bg-charcoal text-alabaster/80 pt-16 pb-10">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+
+        <!-- Column 1: Brand Logo & Calm Mission Statement -->
+        <div class="lg:col-span-4">
+          <a href="#home" class="inline-flex items-center gap-2.5 mb-4" aria-label="Stillness Home">
+            <svg class="w-9 h-9 shrink-0" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="18" cy="18" r="17" fill="#1E3A2F" stroke="#7C9A82" stroke-width="1.5" />
+              <path d="M18 8C15.2 12.2 14.5 16.5 18 22.5C21.5 16.5 20.8 12.2 18 8Z" fill="#FAF9F6" />
+              <path d="M18 22.5C13.8 21.8 10.5 18.8 9.5 14.5C13.4 15.2 16.2 17.8 18 22.5Z" fill="#7C9A82" />
+              <path d="M18 22.5C22.2 21.8 25.5 18.8 26.5 14.5C22.6 15.2 19.8 17.8 18 22.5Z" fill="#7C9A82" />
+              <path d="M11 25.5C13.8 26.8 22.2 26.8 25 25.5" stroke="#D98A6C" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <span class="font-serif text-2xl font-semibold tracking-tight text-white">Stillness</span>
+          </a>
+          <p class="text-sm text-alabaster/70 leading-relaxed max-w-xs">
+            A quiet refuge in a hurried world—helping you breathe deeper, sleep soundly, and return to the present moment every day.
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Navigation Links -->
+        <div class="lg:col-span-2">
+          <h4 class="font-serif text-base font-medium text-white mb-4">Explore</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#features" class="hover:text-white transition-colors">Features</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition-colors">Reviews</a></li>
+            <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contact Information -->
+        <div class="lg:col-span-3">
+          <h4 class="font-serif text-base font-medium text-white mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-terracotta shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              <a href="mailto:hello@stillness.app" class="hover:text-white transition-colors">hello@stillness.app</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-terracotta shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span>24/7 Care &amp; Member Support</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-terracotta shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              <span>San Francisco, CA</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Social Media Links -->
+        <div class="lg:col-span-3">
+          <h4 class="font-serif text-base font-medium text-white mb-4">Community</h4>
+          <div class="flex items-center gap-3">
+            <!-- Instagram -->
+            <a href="#home" aria-label="Stillness on Instagram" class="w-10 h-10 rounded-full bg-white/10 hover:bg-sage text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+            <!-- X -->
+            <a href="#home" aria-label="Stillness on X" class="w-10 h-10 rounded-full bg-white/10 hover:bg-sage text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#home" aria-label="Stillness on YouTube" class="w-10 h-10 rounded-full bg-white/10 hover:bg-sage text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+                <path d="m10 15 5-3-5-3z" />
+              </svg>
+            </a>
+            <!-- Spotify -->
+            <a href="#home" aria-label="Stillness on Spotify" class="w-10 h-10 rounded-full bg-white/10 hover:bg-sage text-white flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M8 14.5c2.5-1 5.5-1 8 0" />
+                <path d="M7 11.5c3.5-1.2 7.5-1.2 10 0" />
+                <path d="M6.5 8.5c4-1.5 8.5-1.5 11 0" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Legal & Privacy Policy Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-alabaster/60">
+        <p>&copy; 2026 Stillness Wellness Inc. All rights reserved.</p>
+        <div class="flex items-center gap-6">
+          <a href="#home" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#home" class="hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+
+    /* Multi-layered warm organic mesh gradient for the Hero Banner */
+    .hero-organic-mesh {
+      background-color: #FAF9F6;
+      /* background: url(/morskie-oko-tatry.jpg); */
+      /* background-image:
+        radial-gradient(circle at 76% 42%, rgba(245, 226, 214, 0.92) 0%, rgba(245, 226, 214, 0) 48%),
+        radial-gradient(circle at 18% 24%, rgba(228, 236, 231, 0.88) 0%, rgba(228, 236, 231, 0) 52%),
+        radial-gradient(ellipse at 52% 88%, rgba(242, 239, 233, 0.95) 0%, rgba(250, 249, 246, 0) 65%); */
+    }
+
+    /* Ambient blurred light orb slow breathing & gentle drift */
+    @keyframes orbBreathe {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 0.55;
+      }
+      50% {
+        transform: translate3d(14px, -18px, 0) scale(1.09);
+        opacity: 0.85;
+      }
+    }
+
+    .animate-orb-slow {
+      animation: orbBreathe 11s ease-in-out infinite;
+    }
+
+    .animate-orb-delayed {
+      animation: orbBreathe 14s ease-in-out infinite 3.5s;
+    }
+
+    /* Falling Leaf Trajectory A: Drifts gently right-then-left while rotating */
+    @keyframes leafFallRight {
+      0% {
+        transform: translate3d(0, -12vh, 0) rotate(0deg) rotateY(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      35% {
+        transform: translate3d(34px, 28vh, 0) rotate(95deg) rotateY(45deg);
+      }
+      70% {
+        transform: translate3d(-26px, 68vh, 0) rotate(215deg) rotateY(-35deg);
+      }
+      90% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      100% {
+        transform: translate3d(22px, 108vh, 0) rotate(330deg) rotateY(25deg);
+        opacity: 0;
+      }
+    }
+
+    /* Falling Leaf Trajectory B: Drifts gently left-then-right for organic variety */
+    @keyframes leafFallLeft {
+      0% {
+        transform: translate3d(0, -12vh, 0) rotate(15deg) rotateY(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: var(--leaf-opacity, 0.6);
+      }
+      35% {
+        transform: translate3d(-36px, 30vh, 0) rotate(-85deg) rotateY(-45deg);
+      }
+      70% {
+        transform: translate3d(28px, 70vh, 0) rotate(-205deg) rotateY(40deg);
+      }
+      90% {
+        opacity: var(--leaf-opacity, 0.6);
+      }
+      100% {
+        transform: translate3d(-18px, 108vh, 0) rotate(-315deg) rotateY(-20deg);
+        opacity: 0;
+      }
+    }
+
+    /* Base helper class for GPU-accelerated falling leaf wrappers */
+    .falling-leaf {
+      position: absolute;
+      top: -6%;
+      will-change: transform, opacity;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    /* Concentric breathing aura rings inside the Dusk Meditation SVG */
+    @keyframes breatheOuter {
+      0%, 100% {
+        transform: scale(0.95);
+        opacity: 0.30;
+      }
+      50% {
+        transform: scale(1.06);
+        opacity: 0.68;
+      }
+    }
+
+    @keyframes breatheInner {
+      0%, 100% {
+        transform: scale(0.97);
+        opacity: 0.45;
+      }
+      50% {
+        transform: scale(1.04);
+        opacity: 0.88;
+      }
+    }
+
+    /* Subtle levitation for the meditating figure */
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    /* Soft shimmer for the reflective lake ripples */
+    @keyframes waterShimmer {
+      0%, 100% {
+        opacity: 0.16;
+        transform: scaleX(0.96);
+      }
+      50% {
+        opacity: 0.36;
+        transform: scaleX(1.04);
+      }
+    }
+
+    .animate-breathe-outer {
+      transform-origin: 250px 210px;
+      animation: breatheOuter 7s ease-in-out infinite;
+    }
+
+    .animate-breathe-inner {
+      transform-origin: 250px 210px;
+      animation: breatheInner 7s ease-in-out infinite 0.45s;
+    }
+
+    .animate-float-calm {
+      animation: gentleFloat 6s ease-in-out infinite;
+    }
+
+    .animate-ripple {
+      transform-origin: 250px 395px;
+      animation: waterShimmer 5.5s ease-in-out infinite;
+    }
+
+    /* Respect user motion preferences for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-orb-slow,
+      .animate-orb-delayed,
+      .falling-leaf,
+      .animate-breathe-outer,
+      .animate-breathe-inner,
+      .animate-float-calm,
+      .animate-ripple {
+        animation: none !important;
+      }
+      .falling-leaf {
+        display: none;
+      }
+    }
