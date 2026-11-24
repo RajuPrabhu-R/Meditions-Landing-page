@@ -6,9 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Stillness — Evidence-based guided meditations, soothing sleep stories, and daily mindfulness rituals designed to bring quiet clarity to your day." />
   <title>Stillness — Meditation &amp; Mental Wellness</title>
-  <link rel="stylesheet" href="style.css">
 
-  <!-- Google Fonts: 'Fraunces' (Editorial Display Serif) & 'Plus Jakarta Sans' (Clean Geometric UI Sans) -->
+  <!-- Google Fonts: 'Fraunces' (Editorial Display Serif) & 'Plus Jakarta Sans' (Clean UI Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,24 +15,23 @@
   <!-- Tailwind CSS v3 Play CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Tailwind Custom Theme Configuration -->
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          /* Font Families */
           fontFamily: {
             serif: ['Fraunces', 'Georgia', 'serif'],
             sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
           },
-          /* Botanical & Warm Dusk Color Palette */
           colors: {
-            alabaster: '#FAF9F6',     /* Primary luminous warm off-white canvas */
-            sagemist: '#E4ECE7',      /* Soft misty sage for organic gradients & badges */
-            sand: '#F2EFE9',          /* Warm stone-sand for alternating section surfaces */
-            sunriseglow: '#F5E2D6',   /* Golden-terracotta sunrise halo behind hero art */
+            alabaster: '#FAF9F6',     /* Primary warm off-white surface */
+            sagemist: '#E4ECE7',      /* Soft misty sage tint */
+            sand: '#F2EFE9',          /* Warm stone-sand for alternating sections */
+            sunriseglow: '#F5E2D6',   /* Soft warm sunrise tint */
             forest: {
-              DEFAULT: '#1E3A2F',     /* Deep grounding forest green for primary CTAs */
-              dark: '#152A22',        /* Deeper forest shade for hover states */
+              DEFAULT: '#1E3A2F',     /* Deep grounding forest green */
+              dark: '#152A22',        /* Darker forest shade for hover states */
               light: '#2C5243',       /* Mid-tone botanical green */
             },
             sage: {
@@ -44,13 +42,12 @@
               DEFAULT: '#D98A6C',     /* Warm sunset terracotta accent */
               soft: '#F8EBE5',        /* Soft blush-terracotta tint */
             },
-            charcoal: '#1C2420',      /* High-contrast organic ink for primary text */
+            charcoal: '#1C2420',      /* High-contrast organic ink for headings & text */
             slate: '#5A6560',         /* Muted slate-green for secondary body copy */
           },
-          /* Soft Atmospheric Box Shadows */
           boxShadow: {
             soft: '0 12px 32px -10px rgba(28, 36, 32, 0.07)',
-            elevated: '0 24px 52px -14px rgba(30, 58, 47, 0.16)',
+            elevated: '0 24px 52px -14px rgba(30, 58, 47, 0.18)',
             glass: '0 20px 50px -12px rgba(30, 58, 47, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8)',
           },
         },
@@ -58,15 +55,77 @@
     };
   </script>
 
+  <!-- Custom Keyframe Animations for Falling Botanical Leaves -->
+  <style>
+    .falling-leaf {
+      position: absolute;
+      top: -10%;
+      opacity: var(--leaf-opacity, 0.65);
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes leafFallRight {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      50% {
+        transform: translate3d(42px, 45vh, 0) rotate(165deg);
+      }
+      88% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      100% {
+        transform: translate3d(-18px, 102vh, 0) rotate(340deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes leafFallLeft {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      50% {
+        transform: translate3d(-42px, 45vh, 0) rotate(-165deg);
+      }
+      88% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      100% {
+        transform: translate3d(18px, 102vh, 0) rotate(-340deg);
+        opacity: 0;
+      }
+    }
+
+    /* Respect user reduced-motion accessibility settings */
+    @media (prefers-reduced-motion: reduce) {
+      .falling-leaf {
+        animation: none !important;
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body class="bg-alabaster text-charcoal font-sans antialiased selection:bg-sage/25 selection:text-forest overflow-x-hidden">
 
-  
-  <!-- <header class="sticky top-0 z-50 bg-white backdrop-blur-md border-b border-charcoal/10">
+  <!-- =====================================================================
+       1. HEADER / STICKY GLASS NAVIGATION BAR
+       ===================================================================== -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg backdrop-saturate-150 border-b border-charcoal/10 shadow-sm transition-all">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
       <div class="relative flex items-center justify-between h-20">
 
+        <!-- Brand Logo -->
         <a href="#home" class="inline-flex items-center gap-2.5 py-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-forest rounded-lg" aria-label="Stillness Home">
           <svg class="w-9 h-9 shrink-0 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <circle cx="18" cy="18" r="17" fill="#E4ECE7" stroke="#1E3A2F" stroke-width="1.5" />
@@ -78,6 +137,7 @@
           <span class="font-serif text-2xl font-semibold tracking-tight text-charcoal">Stillness</span>
         </a>
 
+        <!-- Desktop Navigation Links -->
         <nav class="hidden md:flex items-center gap-8" aria-label="Primary Navigation">
           <a href="#home" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Home</a>
           <a href="#features" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Features</a>
@@ -85,8 +145,9 @@
           <a href="#pricing" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Pricing</a>
         </nav>
 
+        <!-- Desktop Auth Actions (No Form Required) -->
         <div class="hidden md:flex items-center gap-3">
-          <a href="#pricing" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-charcoal hover:text-forest hover:bg-sand rounded-full transition-colors">
+          <a href="#pricing" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-charcoal hover:text-forest hover:bg-sand/70 rounded-full transition-colors">
             Login
           </a>
           <a href="#pricing" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-forest hover:bg-forest-dark rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5">
@@ -94,8 +155,9 @@
           </a>
         </div>
 
+        <!-- Pure-CSS Mobile Hamburger Toggle -->
         <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" aria-label="Toggle navigation menu" />
-        <label for="mobile-nav-toggle" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-charcoal hover:bg-sand cursor-pointer transition-colors" aria-hidden="true">
+        <label for="mobile-nav-toggle" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-charcoal hover:bg-sand/70 cursor-pointer transition-colors" aria-hidden="true">
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="4" y1="7" x2="20" y2="7" />
             <line x1="4" y1="12" x2="20" y2="12" />
@@ -103,7 +165,8 @@
           </svg>
         </label>
 
-        <div class="hidden peer-checked:flex md:hidden flex-col gap-2 absolute top-full left-0 right-0 mt-2 p-5 bg-alabaster/95 backdrop-blur-md border border-charcoal/10 rounded-3xl shadow-elevated">
+        <!-- Mobile Dropdown Drawer -->
+        <div class="hidden peer-checked:flex md:hidden flex-col gap-2 absolute top-full left-0 right-0 mt-2 p-5 bg-alabaster/95 backdrop-blur-xl backdrop-saturate-150 border border-charcoal/10 rounded-3xl shadow-elevated">
           <nav class="flex flex-col divide-y divide-charcoal/10" aria-label="Mobile Navigation">
             <a href="#home" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Home</a>
             <a href="#features" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Features</a>
@@ -122,155 +185,84 @@
 
       </div>
     </div>
-  </header> -->
-
-  <header class="sticky top-0 z-50 bg-white/40 backdrop-blur-lg backdrop-saturate-150 border-b border-white/40 shadow-sm transition-all">
-  <div class="max-w-6xl mx-auto px-5 sm:px-8">
-    <div class="relative flex items-center justify-between h-20">
-
-      <a href="#home" class="inline-flex items-center gap-2.5 py-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-forest rounded-lg" aria-label="Stillness Home">
-        <svg class="w-9 h-9 shrink-0 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="18" cy="18" r="17" fill="#E4ECE7" stroke="#1E3A2F" stroke-width="1.5" />
-          <path d="M18 8C15.2 12.2 14.5 16.5 18 22.5C21.5 16.5 20.8 12.2 18 8Z" fill="#1E3A2F" />
-          <path d="M18 22.5C13.8 21.8 10.5 18.8 9.5 14.5C13.4 15.2 16.2 17.8 18 22.5Z" fill="#7C9A82" />
-          <path d="M18 22.5C22.2 21.8 25.5 18.8 26.5 14.5C22.6 15.2 19.8 17.8 18 22.5Z" fill="#7C9A82" />
-          <path d="M11 25.5C13.8 26.8 22.2 26.8 25 25.5" stroke="#D98A6C" stroke-width="1.8" stroke-linecap="round" />
-        </svg>
-        <span class="font-serif text-2xl font-semibold tracking-tight text-charcoal">Stillness</span>
-      </a>
-
-      <nav class="hidden md:flex items-center gap-8" aria-label="Primary Navigation">
-        <a href="#home" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Home</a>
-        <a href="#features" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Features</a>
-        <a href="#about" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">About</a>
-        <a href="#pricing" class="text-sm font-medium text-slate hover:text-charcoal transition-colors py-2">Pricing</a>
-      </nav>
-
-      <div class="hidden md:flex items-center gap-3">
-        <a href="#pricing" class="inline-flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-charcoal hover:text-forest hover:bg-white/50 rounded-full transition-colors">
-          Login
-        </a>
-        <a href="#pricing" class="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-white bg-forest hover:bg-forest-dark rounded-full shadow-sm transition-all duration-200 hover:-translate-y-0.5">
-          Sign up
-        </a>
-      </div>
-
-      <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" aria-label="Toggle navigation menu" />
-      <label for="mobile-nav-toggle" class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-charcoal hover:bg-white/50 cursor-pointer transition-colors" aria-hidden="true">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" y1="7" x2="20" y2="7" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="17" x2="20" y2="17" />
-        </svg>
-      </label>
-
-      <div class="hidden peer-checked:flex md:hidden flex-col gap-2 absolute top-full left-0 right-0 mt-2 p-5 bg-alabaster/75 backdrop-blur-xl backdrop-saturate-150 border border-white/50 rounded-3xl shadow-elevated">
-        <nav class="flex flex-col divide-y divide-charcoal/10" aria-label="Mobile Navigation">
-          <a href="#home" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Home</a>
-          <a href="#features" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Features</a>
-          <a href="#about" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">About</a>
-          <a href="#pricing" class="py-3 px-2 text-base font-medium text-charcoal hover:text-forest transition-colors">Pricing</a>
-        </nav>
-        <div class="pt-3 mt-1 border-t border-charcoal/10 flex flex-col sm:flex-row gap-2.5">
-          <a href="#pricing" class="w-full inline-flex items-center justify-center py-3 px-5 text-sm font-semibold text-charcoal bg-white/60 hover:bg-white/80 rounded-full transition-colors">
-            Login
-          </a>
-          <a href="#pricing" class="w-full inline-flex items-center justify-center py-3 px-5 text-sm font-semibold text-white bg-forest hover:bg-forest-dark rounded-full transition-colors">
-            Sign up
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</header>
+  </header>
 
   <main>
-    
-    <section id="home" class="hero-organic-mesh relative overflow-hidden pt-14 pb-24 sm:pt-20 sm:pb-32 lg:pt-24 lg:pb-36 scroll-mt-20  bg-[url('/morski.jpg')] bg-cover bg-center">
 
+    <!-- =====================================================================
+         2. HERO SECTION (High-Contrast Text Over Your Landscape Image)
+         ===================================================================== -->
+    <section
+      id="home"
+      style="background-image: url('./breathtaking-view-green-landscape-with-trees-cloudy-sky-sunrise.jpg'), url('https://raw.githubusercontent.com/RajuPrabhu-R/Meditions-Landing-page/main/breathtaking-view-green-landscape-with-trees-cloudy-sky-sunrise.jpg');"
+      class="relative min-h-[85vh] lg:min-h-[720px] flex items-center overflow-hidden pt-16 pb-28 sm:pt-20 sm:pb-32 scroll-mt-20 bg-forest-dark bg-cover bg-[68%_center] lg:bg-center bg-no-repeat"
+    >
+      <!-- High-Contrast Deep Botanical Scrim:
+           - On mobile: full vertical dark tint so centered text stays crisp over green grass & mountains
+           - On desktop (lg): deep forest scrim on the left fading smoothly so the tree & meadow shine on the right -->
+      <div
+        class="absolute inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#0E1D17]/85 via-[#142820]/75 to-[#0E1D17]/75 lg:bg-gradient-to-r lg:from-[#0E1D17]/92 lg:via-[#142820]/72 lg:to-[#0E1D17]/10"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Subtle Top & Bottom Edge Vignette for Seamless Header & Wave Transitions -->
+      <div
+        class="absolute inset-0 pointer-events-none z-0 bg-gradient-to-b from-black/25 via-transparent to-[#0E1D17]/40"
+        aria-hidden="true"
+      ></div>
+
+      <!-- Falling Botanical Leaves Animation Layer -->
       <div class="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        <div class="animate-orb-slow absolute -top-20 -left-16 w-80 h-80 sm:w-[28rem] sm:h-[28rem] rounded-full bg-sagemist/80 blur-3xl"></div>
-        <div class="animate-orb-delayed absolute top-12 right-[4%] w-80 h-80 sm:w-[32rem] sm:h-[32rem] rounded-full bg-sunriseglow/90 blur-3xl"></div>
-        <div class="animate-orb-slow absolute bottom-8 left-1/3 w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-sand/90 blur-3xl"></div>
-      </div>
 
-      <div class="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-
-        <div class="falling-leaf left-[4%] w-6 h-6 text-sage" style="--leaf-opacity: 0.62; animation-name: leafFallRight; animation-duration: 14s; animation-delay: -3s;">
+        <div class="falling-leaf left-[4%] w-6 h-6 text-[#B7DEC4]" style="--leaf-opacity: 0.72; animation-name: leafFallRight; animation-duration: 14s; animation-delay: -3s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.85" />
-            <path d="M5 25C11 19 18 13 27 5" stroke="#1E3A2F" stroke-opacity="0.35" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.9" />
+            <path d="M5 25C11 19 18 13 27 5" stroke="#FAF9F6" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[13%] w-5 h-5 text-terracotta" style="--leaf-opacity: 0.52; animation-name: leafFallLeft; animation-duration: 17s; animation-delay: -9s;">
+        <div class="falling-leaf left-[13%] w-5 h-5 text-terracotta" style="--leaf-opacity: 0.78; animation-name: leafFallLeft; animation-duration: 17s; animation-delay: -9s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.85" />
-            <path d="M16 4V28" stroke="#FAF9F6" stroke-opacity="0.45" stroke-width="1.1" stroke-linecap="round" />
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.9" />
+            <path d="M16 4V28" stroke="#FAF9F6" stroke-opacity="0.5" stroke-width="1.1" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[23%] w-7 h-7 text-forest-light" style="--leaf-opacity: 0.42; animation-name: leafFallRight; animation-duration: 19s; animation-delay: -14s;">
+        <div class="falling-leaf left-[23%] w-7 h-7 text-[#D4ECDC]" style="--leaf-opacity: 0.55; animation-name: leafFallRight; animation-duration: 19s; animation-delay: -14s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M26 6C15 7 8 14 6 26C18 24 25 17 26 6Z" fill="currentColor" fill-opacity="0.75" />
-            <path d="M7 25L25 7" stroke="#FAF9F6" stroke-opacity="0.35" stroke-width="1.1" stroke-linecap="round" />
+            <path d="M26 6C15 7 8 14 6 26C18 24 25 17 26 6Z" fill="currentColor" fill-opacity="0.8" />
+            <path d="M7 25L25 7" stroke="#FAF9F6" stroke-opacity="0.4" stroke-width="1.1" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[33%] w-4 h-4 text-sage" style="--leaf-opacity: 0.68; animation-name: leafFallLeft; animation-duration: 12s; animation-delay: -5s;">
+        <div class="falling-leaf left-[33%] w-4 h-4 text-[#B7DEC4]" style="--leaf-opacity: 0.75; animation-name: leafFallLeft; animation-duration: 12s; animation-delay: -5s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
             <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[43%] w-6 h-6 text-terracotta" style="--leaf-opacity: 0.48; animation-name: leafFallRight; animation-duration: 16s; animation-delay: -11s;">
+        <div class="falling-leaf left-[43%] w-6 h-6 text-terracotta" style="--leaf-opacity: 0.68; animation-name: leafFallRight; animation-duration: 16s; animation-delay: -11s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.8" />
-            <path d="M16 5V27" stroke="#1E3A2F" stroke-opacity="0.25" stroke-width="1.1" stroke-linecap="round" />
+            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.85" />
+            <path d="M16 5V27" stroke="#FAF9F6" stroke-opacity="0.4" stroke-width="1.1" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[51%] w-5 h-5 text-sage" style="--leaf-opacity: 0.58; animation-name: leafFallLeft; animation-duration: 13.5s; animation-delay: -2s;">
+        <div class="falling-leaf left-[54%] w-5 h-5 text-[#B7DEC4]" style="--leaf-opacity: 0.68; animation-name: leafFallLeft; animation-duration: 13.5s; animation-delay: -2s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
             <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.9" />
-            <path d="M6 24L26 6" stroke="#1E3A2F" stroke-opacity="0.3" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M6 24L26 6" stroke="#FAF9F6" stroke-opacity="0.4" stroke-width="1.2" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[60%] w-7 h-7 text-forest-light" style="--leaf-opacity: 0.38; animation-name: leafFallRight; animation-duration: 18s; animation-delay: -7.5s;">
-          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" fill-opacity="0.8" />
-          </svg>
-        </div>
-
-        <div class="falling-leaf left-[69%] w-5 h-5 text-terracotta" style="--leaf-opacity: 0.62; animation-name: leafFallLeft; animation-duration: 11.5s; animation-delay: -4s;">
+        <div class="falling-leaf left-[68%] w-5 h-5 text-terracotta" style="--leaf-opacity: 0.65; animation-name: leafFallLeft; animation-duration: 12.5s; animation-delay: -4s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
             <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" />
             <path d="M6 24L26 6" stroke="#FAF9F6" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" />
           </svg>
         </div>
 
-        <div class="falling-leaf left-[78%] w-8 h-8 text-sage" style="--leaf-opacity: 0.45; animation-name: leafFallRight; animation-duration: 16.5s; animation-delay: -12.5s;">
-          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.85" />
-            <path d="M5 25C11 19 18 13 27 5" stroke="#1E3A2F" stroke-opacity="0.3" stroke-width="1.2" stroke-linecap="round" />
-          </svg>
-        </div>
-
-        <div class="falling-leaf left-[86%] w-4 h-4 text-forest-light" style="--leaf-opacity: 0.55; animation-name: leafFallLeft; animation-duration: 13s; animation-delay: -8.5s;">
-          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" />
-          </svg>
-        </div>
-
-        <div class="falling-leaf left-[93%] w-6 h-6 text-terracotta" style="--leaf-opacity: 0.50; animation-name: leafFallRight; animation-duration: 15s; animation-delay: -1s;">
-          <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
-            <path d="M27 5C16 5 7 12 5 25C18 23 25 14 27 5Z" fill="currentColor" fill-opacity="0.85" />
-          </svg>
-        </div>
-
-        <div class="falling-leaf left-[18%] w-5 h-5 text-sage" style="--leaf-opacity: 0.56; animation-name: leafFallRight; animation-duration: 18.5s; animation-delay: -15.5s;">
+        <div class="falling-leaf left-[84%] w-4 h-4 text-[#D4ECDC]" style="--leaf-opacity: 0.65; animation-name: leafFallRight; animation-duration: 15s; animation-delay: -8.5s;">
           <svg viewBox="0 0 32 32" fill="none" class="w-full h-full">
             <path d="M16 3C9 10 8 20 16 29C24 20 23 10 16 3Z" fill="currentColor" />
           </svg>
@@ -278,26 +270,30 @@
 
       </div>
 
-      <div class="relative z-10 max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-10">
-
+      <!-- Hero Foreground Content -->
+      <div class="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-center">
           <div class="lg:col-span-6 text-center lg:text-left max-w-xl mx-auto lg:mx-0">
 
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-sage/30 text-forest text-xs font-semibold uppercase tracking-wider shadow-sm mb-6">
+            <!-- Frosted Dark-Glass Eyebrow Pill -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-alabaster text-xs font-semibold uppercase tracking-wider shadow-sm mb-6">
               <span class="w-2 h-2 rounded-full bg-terracotta animate-pulse" aria-hidden="true"></span>
               <span>Evidence-based mindfulness</span>
             </div>
 
-            <h1 class="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-medium text-charcoal leading-[1.12] tracking-tight mb-6">
-              Find <span class="italic font-normal text-forest">quiet clarity</span> in the middle of a busy day.
+            <!-- High-Contrast Headline -->
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] font-medium text-white leading-[1.12] tracking-tight drop-shadow-sm mb-6">
+              Find <span class="italic font-normal text-[#BCE0C8]">quiet clarity</span> in the middle of a busy day.
             </h1>
 
-            <p class="text-base sm:text-lg text-slate leading-relaxed mb-8">
+            <!-- Crisp Readable Description -->
+            <p class="text-base sm:text-lg text-alabaster/95 leading-relaxed mb-8">
               Step away from constant notifications with guided meditations, restorative sleep stories, and gentle daily breathwork crafted to steady your mind in minutes.
             </p>
 
+            <!-- Primary & Secondary CTA Buttons -->
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-6">
-              <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 text-base font-semibold text-white bg-forest hover:bg-forest-dark rounded-full shadow-elevated transition-all duration-300 hover:-translate-y-0.5">
+              <a href="#pricing" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 text-base font-semibold text-forest bg-alabaster hover:bg-white rounded-full shadow-elevated transition-all duration-300 hover:-translate-y-0.5">
                 <span>Start Free Trial</span>
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M5 12h14" />
@@ -305,7 +301,7 @@
                 </svg>
               </a>
 
-              <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-3.5 text-sm font-semibold text-forest hover:text-forest-dark bg-white/60 hover:bg-white/90 border border-charcoal/10 rounded-full transition-colors">
+              <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-3.5 text-sm font-semibold text-white bg-white/15 hover:bg-white/25 backdrop-blur-sm border border-white/35 rounded-full transition-colors">
                 <span>Explore features</span>
                 <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="m6 9 6 6 6-6" />
@@ -313,104 +309,31 @@
               </a>
             </div>
 
-            <p class="inline-flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-medium text-slate">
-              <svg class="w-4 h-4 text-sage shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <!-- Trust Reassurance Line -->
+            <p class="inline-flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-medium text-alabaster/90">
+              <svg class="w-4 h-4 text-[#98C9A9] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M20 6 9 17l-5-5" />
               </svg>
               <span>No credit card needed for Free plan &bull; Cancel anytime</span>
             </p>
+
           </div>
-
-          <!-- <div class="lg:col-span-6 flex justify-center">
-            <div class="relative w-full max-w-[495px]">
-              <div class="absolute -inset-4 rounded-[3rem] bg-gradient-to-tr from-sage/25 via-sunriseglow/70 to-terracotta/25 blur-2xl -z-10" aria-hidden="true"></div>
-
-              <div class="w-full aspect-square rounded-[2.5rem] bg-white/55 backdrop-blur-md p-3.5 sm:p-5 border border-white/80 shadow-glass">
-                <svg class="w-full h-full rounded-[2rem]" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a calm figure meditating by a still mountain lake at dusk under a crescent moon and glowing breathing rings">
-                  <defs>
-                    <linearGradient id="duskHorizon" x1="250" y1="0" x2="250" y2="370" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stop-color="#1E3A2F" />
-                      <stop offset="44%" stop-color="#486C5B" />
-                      <stop offset="80%" stop-color="#D98A6C" />
-                      <stop offset="100%" stop-color="#F5E2D6" />
-                    </linearGradient>
-
-                    <radialGradient id="breathAura" cx="50%" cy="42%" r="44%">
-                      <stop offset="0%" stop-color="#FFFDF9" stop-opacity="0.78" />
-                      <stop offset="55%" stop-color="#F5E2D6" stop-opacity="0.28" />
-                      <stop offset="100%" stop-color="#F5E2D6" stop-opacity="0" />
-                    </radialGradient>
-
-                    <linearGradient id="lakeWater" x1="250" y1="340" x2="250" y2="500" gradientUnits="userSpaceOnUse">
-                      <stop offset="0%" stop-color="#355648" />
-                      <stop offset="45%" stop-color="#243E33" />
-                      <stop offset="100%" stop-color="#152A22" />
-                    </linearGradient>
-                  </defs>
-
-                  <rect width="500" height="360" fill="url(#duskHorizon)" />
-
-                  <circle cx="250" cy="210" r="195" fill="url(#breathAura)" />
-
-                  <circle class="animate-breathe-outer" cx="250" cy="210" r="146" stroke="#FAF9F6" stroke-width="1.5" stroke-dasharray="6 8" />
-                  <circle class="animate-breathe-inner" cx="250" cy="210" r="108" fill="#FAF9F6" fill-opacity="0.11" stroke="#FAF9F6" stroke-width="1.5" />
-
-                  <path d="M376 74C362 78 353 92 356 107C359 121 372 130 386 128C371 135 353 128 346 113C339 98 346 80 361 73C366 71 371 72 376 74Z" fill="#FAF9F6" fill-opacity="0.92" />
-                  <circle cx="118" cy="84" r="2.3" fill="#FAF9F6" fill-opacity="0.82" />
-                  <circle cx="165" cy="58" r="1.7" fill="#FAF9F6" fill-opacity="0.65" />
-                  <circle cx="312" cy="54" r="2" fill="#FAF9F6" fill-opacity="0.78" />
-                  <circle cx="416" cy="134" r="1.8" fill="#FAF9F6" fill-opacity="0.6" />
-                  <circle cx="88" cy="148" r="2" fill="#FAF9F6" fill-opacity="0.55" />
-
-                  <path d="M0 288L88 228L176 276L272 214L374 274L448 232L500 264V350H0V288Z" fill="#2C5243" fill-opacity="0.68" />
-                  <path d="M0 308L118 258L218 298L332 246L426 294L500 266V355H0V308Z" fill="#1E3A2F" fill-opacity="0.88" />
-
-                  <rect y="340" width="500" height="160" fill="url(#lakeWater)" />
-
-                  <ellipse cx="250" cy="354" rx="95" ry="7" fill="#F5E2D6" fill-opacity="0.26" />
-                  <g class="animate-ripple">
-                    <line x1="168" y1="376" x2="332" y2="376" stroke="#FAF9F6" stroke-opacity="0.26" stroke-width="2" stroke-linecap="round" />
-                    <line x1="196" y1="398" x2="304" y2="398" stroke="#FAF9F6" stroke-opacity="0.20" stroke-width="1.8" stroke-linecap="round" />
-                    <line x1="132" y1="422" x2="215" y2="422" stroke="#7C9A82" stroke-opacity="0.30" stroke-width="1.8" stroke-linecap="round" />
-                    <line x1="292" y1="434" x2="376" y2="434" stroke="#7C9A82" stroke-opacity="0.26" stroke-width="1.8" stroke-linecap="round" />
-                    <line x1="212" y1="458" x2="288" y2="458" stroke="#FAF9F6" stroke-opacity="0.16" stroke-width="1.6" stroke-linecap="round" />
-                  </g>
-
-                  <path d="M95 344C145 322 355 322 405 344C365 356 135 356 95 344Z" fill="#152A22" />
-
-                  <g class="animate-float-calm">
-                    <ellipse cx="250" cy="336" rx="74" ry="11" fill="#0F1F19" fill-opacity="0.45" />
-
-                    <circle cx="250" cy="176" r="11" fill="#1C2420" />
-                    <circle cx="250" cy="197" r="20" fill="#F3D3C1" />
-                    <path d="M242 197C244 199.2 246.5 199.2 248.5 197" stroke="#1C2420" stroke-width="1.7" stroke-linecap="round" />
-                    <path d="M251.5 197C253.5 199.2 256 199.2 258 197" stroke="#1C2420" stroke-width="1.7" stroke-linecap="round" />
-
-                    <path d="M217 238C221 223 234 218 250 218C266 218 279 223 283 238L298 308H202L217 238Z" fill="#D98A6C" />
-                    <path d="M227 221C235 239 242 248 250 248C258 248 265 239 273 221" stroke="#FAF9F6" stroke-width="2" stroke-opacity="0.6" fill="none" />
-
-                    <path d="M180 325C180 308 208 300 250 300C292 300 320 308 320 325C320 335 290 338 250 338C210 338 180 335 180 325Z" fill="#1E3A2F" />
-
-                    <path d="M218 240C202 262 193 286 190 308" stroke="#F3D3C1" stroke-width="10" stroke-linecap="round" />
-                    <path d="M282 240C298 262 307 286 310 308" stroke="#F3D3C1" stroke-width="10" stroke-linecap="round" />
-                  </g>
-                </svg>
-              </div>
-            </div>
-          </div> -->
-
         </div>
       </div>
 
+      <!-- Bottom Curved Wave Divider -->
       <div class="absolute bottom-0 left-0 right-0 pointer-events-none leading-none z-10" aria-hidden="true">
         <svg class="w-full h-10 sm:h-16 text-alabaster" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="currentColor">
-          <path d="M0,42 C360,84 1080,6 1440,48 L1440,80 L0,80 Z" fill="#E4ECE7" fill-opacity="0.65" />
+          <path d="M0,42 C360,84 1080,6 1440,48 L1440,80 L0,80 Z" fill="#E4ECE7" fill-opacity="0.45" />
           <path d="M0,56 C440,14 980,82 1440,36 L1440,80 L0,80 Z" />
         </svg>
       </div>
     </section>
 
-    
+
+    <!-- =====================================================================
+         3. FEATURES SECTION
+         ===================================================================== -->
     <section id="features" class="py-20 sm:py-24 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
 
@@ -428,6 +351,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
+          <!-- Feature 1: Meditation Sessions -->
           <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
             <div class="w-14 h-14 rounded-2xl bg-sage-soft text-forest flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -445,6 +369,7 @@
             </span>
           </article>
 
+          <!-- Feature 2: Sleep Stories -->
           <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
             <div class="w-14 h-14 rounded-2xl bg-terracotta-soft text-terracotta flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -461,6 +386,7 @@
             </span>
           </article>
 
+          <!-- Feature 3: Stress Management -->
           <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
             <div class="w-14 h-14 rounded-2xl bg-sage-soft text-forest flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -478,6 +404,7 @@
             </span>
           </article>
 
+          <!-- Feature 4: Daily Mindfulness -->
           <article class="group bg-white rounded-3xl p-7 border border-charcoal/10 shadow-soft hover:shadow-elevated hover:-translate-y-1.5 hover:border-sage transition-all duration-300 flex flex-col">
             <div class="w-14 h-14 rounded-2xl bg-terracotta-soft text-terracotta flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -498,7 +425,10 @@
       </div>
     </section>
 
-    
+
+    <!-- =====================================================================
+         4. ABOUT SECTION
+         ===================================================================== -->
     <section id="about" class="py-20 sm:py-24 bg-sand border-y border-charcoal/10 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12">
@@ -548,7 +478,10 @@
       </div>
     </section>
 
-    
+
+    <!-- =====================================================================
+         5. TESTIMONIALS SECTION
+         ===================================================================== -->
     <section id="testimonials" class="py-20 sm:py-24 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
 
@@ -566,6 +499,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
 
+          <!-- Review 1 -->
           <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
             <div>
               <div class="flex items-center gap-1 text-amber-500 mb-5" aria-label="5 out of 5 stars">
@@ -590,6 +524,7 @@
             </footer>
           </article>
 
+          <!-- Review 2 -->
           <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
             <div>
               <div class="flex items-center gap-1 text-amber-500 mb-5" aria-label="5 out of 5 stars">
@@ -614,6 +549,7 @@
             </footer>
           </article>
 
+          <!-- Review 3 -->
           <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col justify-between hover:-translate-y-1 transition-transform duration-300">
             <div>
               <div class="flex items-center gap-1 text-amber-500 mb-5" aria-label="5 out of 5 stars">
@@ -642,7 +578,10 @@
       </div>
     </section>
 
-   
+
+    <!-- =====================================================================
+         6. PRICING SECTION (Free, Monthly, Yearly Plans)
+         ===================================================================== -->
     <section id="pricing" class="py-20 sm:py-24 bg-sand border-t border-charcoal/10 scroll-mt-20">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
 
@@ -660,6 +599,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-xl lg:max-w-none mx-auto">
 
+          <!-- Free Plan -->
           <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col">
             <h3 class="font-serif text-2xl font-medium text-charcoal mb-1.5">Free</h3>
             <p class="text-sm text-slate mb-6">Essential tools to build a gentle daily habit.</p>
@@ -690,6 +630,7 @@
             </a>
           </article>
 
+          <!-- Monthly Plan -->
           <article class="bg-white rounded-3xl p-8 border border-charcoal/10 shadow-soft flex flex-col">
             <h3 class="font-serif text-2xl font-medium text-charcoal mb-1.5">Monthly</h3>
             <p class="text-sm text-slate mb-6">Flexible month-to-month access to everything.</p>
@@ -720,6 +661,7 @@
             </a>
           </article>
 
+          <!-- Yearly Plan (Highlighted) -->
           <article class="relative bg-white rounded-3xl p-8 border-2 border-forest shadow-elevated flex flex-col lg:-translate-y-2">
             <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-terracotta text-white text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full shadow-md whitespace-nowrap">
               Most Popular &bull; Save 55%
@@ -757,14 +699,19 @@
         </div>
       </div>
     </section>
+
   </main>
 
-  
+
+  <!-- =====================================================================
+       7. FOOTER (Logo, Navigation, Contact Info, Privacy Policy, Social Links)
+       ===================================================================== -->
   <footer class="bg-charcoal text-alabaster/80 pt-16 pb-10">
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
 
+        <!-- Brand Column -->
         <div class="lg:col-span-4">
           <a href="#home" class="inline-flex items-center gap-2.5 mb-4" aria-label="Stillness Home">
             <svg class="w-9 h-9 shrink-0" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -781,6 +728,7 @@
           </p>
         </div>
 
+        <!-- Quick Links -->
         <div class="lg:col-span-2">
           <h4 class="font-serif text-base font-medium text-white mb-4">Explore</h4>
           <ul class="space-y-2.5 text-sm">
@@ -792,6 +740,7 @@
           </ul>
         </div>
 
+        <!-- Contact Information -->
         <div class="lg:col-span-3">
           <h4 class="font-serif text-base font-medium text-white mb-4">Contact</h4>
           <ul class="space-y-3 text-sm">
@@ -819,6 +768,7 @@
           </ul>
         </div>
 
+        <!-- Social Media Links -->
         <div class="lg:col-span-3">
           <h4 class="font-serif text-base font-medium text-white mb-4">Community</h4>
           <div class="flex items-center gap-3">
@@ -854,6 +804,7 @@
 
       </div>
 
+      <!-- Legal & Privacy Policy Row -->
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-alabaster/60">
         <p>&copy; 2026 Stillness Wellness Inc. All rights reserved.</p>
         <div class="flex items-center gap-6">
