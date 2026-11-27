@@ -1,5 +1,4 @@
 
-    /* Multi-layered warm organic mesh gradient for the Hero Banner */
     .hero-organic-mesh {
       background-color: #FAF9F6;
       /* background: url(/morskie-oko-tatry.jpg); */
@@ -13,7 +12,6 @@
       display: none;
     }
 
-    /* Ambient blurred light orb slow breathing & gentle drift */
     @keyframes orbBreathe {
       0%, 100% {
         transform: translate3d(0, 0, 0) scale(1);
@@ -33,7 +31,6 @@
       animation: orbBreathe 14s ease-in-out infinite 3.5s;
     }
 
-    /* Falling Leaf Trajectory A: Drifts gently right-then-left while rotating */
     @keyframes leafFallRight {
       0% {
         transform: translate3d(0, -12vh, 0) rotate(0deg) rotateY(0deg);
@@ -90,7 +87,6 @@
       animation-iteration-count: infinite;
     }
 
-    /* Concentric breathing aura rings inside the Dusk Meditation SVG */
     @keyframes breatheOuter {
       0%, 100% {
         transform: scale(0.95);
@@ -113,7 +109,6 @@
       }
     }
 
-    /* Subtle levitation for the meditating figure */
     @keyframes gentleFloat {
       0%, 100% {
         transform: translateY(0px);
@@ -123,7 +118,6 @@
       }
     }
 
-    /* Soft shimmer for the reflective lake ripples */
     @keyframes waterShimmer {
       0%, 100% {
         opacity: 0.16;
@@ -166,6 +160,63 @@
         animation: none !important;
       }
       .falling-leaf {
+        display: none;
+      }
+    }
+
+    .falling-leaf {
+      position: absolute;
+      top: -10%;
+      opacity: var(--leaf-opacity, 0.65);
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes leafFallRight {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      50% {
+        transform: translate3d(42px, 45vh, 0) rotate(165deg);
+      }
+      88% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      100% {
+        transform: translate3d(-18px, 102vh, 0) rotate(340deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes leafFallLeft {
+      0% {
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      50% {
+        transform: translate3d(-42px, 45vh, 0) rotate(-165deg);
+      }
+      88% {
+        opacity: var(--leaf-opacity, 0.65);
+      }
+      100% {
+        transform: translate3d(18px, 102vh, 0) rotate(-340deg);
+        opacity: 0;
+      }
+    }
+
+    /* Respect user reduced-motion accessibility settings */
+    @media (prefers-reduced-motion: reduce) {
+      .falling-leaf {
+        animation: none !important;
         display: none;
       }
     }
