@@ -1,101 +1,438 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ozoro app</title>
-    <link rel="stylesheet"
-        href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&f[]=switzer@400,500,600&display=swap">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ozoro Zylife — Modern Medicine &amp; Traditional Wisdom</title>
+  <link rel="stylesheet"
+    href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=switzer@400,500,600&display=swap" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --font-display: "Clash Display", "Poppins", sans-serif;
+      --font-sans: "Switzer", "Poppins", sans-serif;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
-<body class="overflow-y-auto">
+<body class="bg-[#FAF9F6] text-zinc-900 font-sans antialiased overflow-x-hidden">
 
-    <header class="w-full mx-auto rounded-b-2xl sticky top-0 z-50 bg-white h-19">
-        <nav class="flex justify-between items-left p-5 md:p-3">
-            <div class="px-5 sm:px-8 md:px-9">
-                <img src="assets/logo.png" alt="ozoro-logo" class="w-10 lg:hidden">
-                <img src="assets/large-logo.png" alt="Large-ozoro-logo" class="w-50 hidden lg:block">
-            </div>
-            <div class="space-x-7 lg:pt-3 font-small flex justify-center items-center hidden lg:block uppercase">
-                <a href="#">Product</a>
-                <a href="#">About</a>
-                <a href="#">Quality</a>
-                <a href="#">Certifications</a>
-                <a href="#">Contact</a>
-            </div>
+  <!-- Sticky Header & Navigation -->
+  <header class="w-full sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200/80 rounded-b-2xl shadow-xs">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-5 sm:px-8 h-20" aria-label="Primary Navigation">
 
-            <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" aria-label="Toggle navigation menu" />
-            <label for="mobile-nav-toggle"
-                class="md:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-charcoal hover:bg-sand/70 cursor-pointer transition-colors"
-                aria-hidden="true">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="4" y1="7" x2="20" y2="7" />
-                    <line x1="4" y1="12" x2="20" y2="12" />
-                    <line x1="4" y1="17" x2="20" y2="17" />
-                </svg>
-            </label>
+      <!-- Brand Logo (Uses your local assets with graceful fallback) -->
+      <a href="#home" class="inline-flex items-center gap-3 shrink-0">
+        <img src="assets/logo.png" alt="Ozoro Logo" class="h-10 w-auto lg:hidden"
+          onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+        <span class="hidden lg:hidden inline-flex items-center gap-2 font-display font-semibold text-xl text-green-900">
+          <span class="w-9 h-9 rounded-xl bg-green-800 text-white flex items-center justify-center text-base font-bold">O</span>
+          Ozoro
+        </span>
 
-            <button
-                class="uppercase bg-amber-700 text-white px-6 sm:px-2 md:px-7 letter-spaceing rounded-full mr-3 hidden lg:block">
-                <a href="#">Send a query</a>
-            </button>
-        </nav>
-    </header>
+        <img src="assets/large-logo.png" alt="Ozoro Zylife Logo" class="h-11 w-auto hidden lg:block"
+          onerror="this.classList.remove('lg:block'); this.nextElementSibling.classList.add('lg:inline-flex');" />
+        <span class="hidden items-center gap-2.5 font-display font-semibold text-2xl tracking-tight text-green-950">
+          <span class="w-9 h-9 rounded-xl bg-green-800 text-white flex items-center justify-center text-base font-bold">O</span>
+          Ozoro Zylife
+        </span>
+      </a>
 
+      <!-- Desktop Menu Links -->
+      <div class="hidden lg:flex items-center gap-8 text-sm font-medium uppercase tracking-wider text-zinc-700">
+        <a href="#product" class="hover:text-green-800 transition-colors">Product</a>
+        <a href="#about" class="hover:text-green-800 transition-colors">About</a>
+        <a href="#quality" class="hover:text-green-800 transition-colors">Quality</a>
+        <a href="#certifications" class="hover:text-green-800 transition-colors">Certifications</a>
+        <a href="#contact" class="hover:text-green-800 transition-colors">Contact</a>
+      </div>
+
+      <!-- Desktop CTA Button -->
+      <div class="hidden lg:flex items-center">
+        <a href="#contact"
+          class="inline-flex items-center justify-center uppercase text-xs font-semibold tracking-wider bg-amber-700 hover:bg-amber-800 text-white px-6 py-3 rounded-full transition-colors">
+          Send a Query
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle (Matches lg:hidden breakpoint) -->
+      <input type="checkbox" id="mobile-nav-toggle" class="peer hidden" aria-label="Toggle navigation menu" />
+      <label for="mobile-nav-toggle"
+        class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl text-zinc-800 hover:bg-zinc-100 cursor-pointer transition-colors"
+        aria-hidden="true">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" y1="7" x2="20" y2="7" />
+          <line x1="4" y1="12" x2="20" y2="12" />
+          <line x1="4" y1="17" x2="20" y2="17" />
+        </svg>
+      </label>
+
+      <!-- Mobile Dropdown Drawer -->
+      <div
+        class="hidden peer-checked:flex lg:hidden flex-col gap-2 absolute top-full left-4 right-4 mt-2 p-6 bg-white border border-zinc-200 rounded-2xl shadow-xl">
+        <a href="#product" onclick="document.getElementById('mobile-nav-toggle').checked=false"
+          class="py-2.5 text-sm font-medium uppercase tracking-wider text-zinc-700 hover:text-green-800">Product</a>
+        <a href="#about" onclick="document.getElementById('mobile-nav-toggle').checked=false"
+          class="py-2.5 text-sm font-medium uppercase tracking-wider text-zinc-700 hover:text-green-800">About</a>
+        <a href="#quality" onclick="document.getElementById('mobile-nav-toggle').checked=false"
+          class="py-2.5 text-sm font-medium uppercase tracking-wider text-zinc-700 hover:text-green-800">Quality</a>
+        <a href="#certifications" onclick="document.getElementById('mobile-nav-toggle').checked=false"
+          class="py-2.5 text-sm font-medium uppercase tracking-wider text-zinc-700 hover:text-green-800">Certifications</a>
+        <a href="#contact" onclick="document.getElementById('mobile-nav-toggle').checked=false"
+          class="py-2.5 text-sm font-medium uppercase tracking-wider text-zinc-700 hover:text-green-800">Contact</a>
+        <a href="#contact" onclick="document.getElementById('mobile-nav-toggle').checked=false"
+          class="mt-3 w-full inline-flex items-center justify-center uppercase text-xs font-semibold tracking-wider bg-amber-700 text-white px-6 py-3.5 rounded-full">
+          Send a Query
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
 
     <!-- Hero Section -->
+    <section id="home" class="bg-[#FAF9F6] pt-10 pb-16 sm:pt-16 sm:pb-24 border-b border-zinc-200/70">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-10">
 
-    <main>
+          <!-- Left Column: Headlines & CTAs -->
+          <div class="lg:col-span-7">
+            <p class="inline-flex items-center gap-2 uppercase text-xs font-semibold tracking-widest text-amber-800 bg-amber-100/80 px-3.5 py-1.5 rounded-full mb-5">
+              <span class="w-2 h-2 rounded-full bg-amber-700"></span>
+              Ozoro Zylife
+            </p>
 
-        <section class="text-black px-7 lg:p-10 pb-10 bg-[#FAF9F6] pt-3">
-            <div class="flex justify-between items-center p-10 h-screen">
-                <div class="flex">
-                    <h1 class="text-7xl md:text-[100px] md:w-[200px]">
-                        Modern Medicine Traditional wisdom
-                    </h1>
-                    <div>
-                        Hero Image Section
-                    </div>
+            <h1 class="font-display text-4xl sm:text-6xl lg:text-[4.25rem] font-semibold tracking-tight text-zinc-900 leading-[1.08]">
+              Modern Medicine.
+              <span class="block text-green-800 mt-1">Traditional Wisdom.</span>
+            </h1>
+
+            <h2 class="font-display text-2xl sm:text-4xl font-medium text-zinc-800 mt-4">
+              One trusted name.
+            </h2>
+
+            <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-xl mt-5">
+              Bridging clinically validated therapeutics with time-tested botanical formulations—crafted under strict pharmaceutical quality standards for everyday wellness.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 mt-8">
+              <a href="#product"
+                class="inline-flex items-center justify-center px-7 py-4 bg-green-800 hover:bg-green-900 text-white text-sm font-semibold rounded-full transition-colors">
+                Explore Products
+              </a>
+              <a href="#contact"
+                class="inline-flex items-center justify-center px-7 py-4 border border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-900 text-sm font-semibold rounded-full transition-colors">
+                Send a Query
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column: Hero Visual Showcase -->
+          <div class="lg:col-span-5">
+            <div class="bg-white rounded-3xl border border-zinc-200/90 p-6 sm:p-8 shadow-sm">
+              <div class="aspect-4/3 rounded-2xl bg-gradient-to-br from-green-50 via-[#FAF9F6] to-amber-50 border border-zinc-200/70 p-6 flex flex-col justify-between">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-semibold uppercase tracking-wider text-green-900 bg-white px-3 py-1 rounded-full border border-green-200">
+                    Dual-Care Science
+                  </span>
+                  <span class="text-xs font-medium text-zinc-500">WHO-GMP Certified</span>
                 </div>
-            </div>
-            <div class="px-2 md:px-5 mt-0 gap-x-6">
 
-                <p class="uppercase text-medium">ozoro zylife</p>
-                <h1 class="md:text-6xl text-5xl">One trusted name.</h1>
+                <div class="my-auto py-4 flex items-center justify-center gap-6">
+                  <div class="w-20 h-20 rounded-2xl bg-green-800 text-white flex flex-col items-center justify-center shadow-sm">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M10.5 20.5 19 12a4.95 4.95 0 1 0-7-7L3.5 13.5a4.95 4.95 0 1 0 7 7Z" />
+                      <path d="m8.5 8.5 7 7" />
+                    </svg>
+                    <span class="text-[10px] font-semibold uppercase mt-1">Clinical</span>
+                  </div>
 
-                <div class="space-x-2 mt-5">
-                    <button class="">
-                        <a href="#" class="px-7 py-4 bg-green-800 text-white rounded-full">Explore Product</a>
-                    </button>
-                    <button class="mt-5">
-                        <a href="#" class="px-7 py-4 border rounded-full">Send a Query</a>
-                    </button>
+                  <span class="text-xl font-bold text-zinc-400">+</span>
+
+                  <div class="w-20 h-20 rounded-2xl bg-amber-700 text-white flex flex-col items-center justify-center shadow-sm">
+                    <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+                      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+                    </svg>
+                    <span class="text-[10px] font-semibold uppercase mt-1">Herbal</span>
+                  </div>
                 </div>
+
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                  <div class="bg-white/90 rounded-xl p-3 border border-zinc-200/70">
+                    <span class="block font-bold text-zinc-900">100% Batch Tested</span>
+                    <span class="text-zinc-500">Purity &amp; potency verified</span>
+                  </div>
+                  <div class="bg-white/90 rounded-xl p-3 border border-zinc-200/70">
+                    <span class="block font-bold text-zinc-900">Clinician Trusted</span>
+                    <span class="text-zinc-500">Pan-India distribution</span>
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
 
-        <!-- Product section -->
+        </div>
+      </div>
+    </section>
 
-        <section class="mt-20 w-full px-5 lg:p-10 overflow-x-auto">
-            <h1 class="text-[100px] md:text-5xl mb-10 md:w-[5 00px]">Two systems of care.One standard of quality.</h1>
+    <!-- Product Section -->
+    <section id="product" class="py-20 sm:py-24 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
 
-            <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-2 md:gap-6 lg:gap-3 gap-4 mx-auto">
-                <img src="" alt="" class="w-[400px] h-[400px] rounded-lg border-1">
-                <img src="" alt="" class="w-[400px] h-[400px] rounded-lg border-1">
+        <div class="max-w-2xl mb-12">
+          <span class="text-xs font-semibold uppercase tracking-widest text-green-800">Our Formulations</span>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-zinc-900 leading-tight mt-2">
+            Two systems of care. One standard of quality.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          <!-- System 1: Modern Medicine -->
+          <article class="bg-white rounded-3xl border border-zinc-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
+            <div>
+              <div class="aspect-16/10 rounded-2xl bg-green-50 border border-green-100 p-6 flex flex-col justify-between mb-6">
+                <span class="self-start px-3 py-1 rounded-full bg-green-800 text-white text-xs font-semibold">
+                  01 &bull; Modern Therapeutics
+                </span>
+                <div>
+                  <p class="font-display text-2xl font-semibold text-green-950">Allopathic &amp; Clinical Care</p>
+                  <p class="text-sm text-green-800/80 mt-1">Precision-dosed tablets, capsules &amp; targeted formulations</p>
+                </div>
+              </div>
+
+              <h3 class="font-display text-2xl font-semibold text-zinc-900 mb-3">
+                Evidence-Based Pharmaceuticals
+              </h3>
+              <p class="text-sm sm:text-base text-zinc-600 leading-relaxed mb-6">
+                Developed with high-bioavailability active ingredients for rapid relief, chronic care support, and dependable clinical outcomes across primary healthcare needs.
+              </p>
             </div>
-        </section>
 
-    </main>
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-zinc-100">
+              <div class="flex flex-wrap gap-2 text-xs font-medium text-zinc-700">
+                <span class="px-3 py-1 rounded-full bg-zinc-100">General Medicine</span>
+                <span class="px-3 py-1 rounded-full bg-zinc-100">Nutraceuticals</span>
+              </div>
+              <a href="#contact" class="text-sm font-semibold text-green-800 hover:underline">
+                Request Catalog &rarr;
+              </a>
+            </div>
+          </article>
 
+          <!-- System 2: Traditional Wisdom -->
+          <article class="bg-white rounded-3xl border border-zinc-200 p-6 sm:p-8 flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow">
+            <div>
+              <div class="aspect-16/10 rounded-2xl bg-amber-50 border border-amber-100 p-6 flex flex-col justify-between mb-6">
+                <span class="self-start px-3 py-1 rounded-full bg-amber-700 text-white text-xs font-semibold">
+                  02 &bull; Traditional Wisdom
+                </span>
+                <div>
+                  <p class="font-display text-2xl font-semibold text-amber-950">Ayurvedic &amp; Herbal Care</p>
+                  <p class="text-sm text-amber-900/80 mt-1">Standardized botanical extracts &amp; classical wellness</p>
+                </div>
+              </div>
+
+              <h3 class="font-display text-2xl font-semibold text-zinc-900 mb-3">
+                Classical Herbal Formulations
+              </h3>
+              <p class="text-sm sm:text-base text-zinc-600 leading-relaxed mb-6">
+                Rooted in authentic Ayurvedic texts and refined with modern extraction technology to preserve active phytochemicals without heavy metals or artificial additives.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-5 border-t border-zinc-100">
+              <div class="flex flex-wrap gap-2 text-xs font-medium text-zinc-700">
+                <span class="px-3 py-1 rounded-full bg-zinc-100">Immunity &amp; Vitality</span>
+                <span class="px-3 py-1 rounded-full bg-zinc-100">Digestive Health</span>
+              </div>
+              <a href="#contact" class="text-sm font-semibold text-amber-800 hover:underline">
+                Request Catalog &rarr;
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white border-y border-zinc-200/80 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-6">
+            <span class="text-xs font-semibold uppercase tracking-widest text-amber-700">About Ozoro Zylife</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-semibold text-zinc-900 mt-2 mb-4">
+              Healthcare built on trust, transparency, and research.
+            </h2>
+            <p class="text-base text-zinc-600 leading-relaxed mb-4">
+              At Ozoro Zylife, we believe patients and practitioners should never have to choose between modern clinical precision and holistic traditional care.
+            </p>
+            <p class="text-base text-zinc-600 leading-relaxed">
+              Every product in our portfolio undergoes rigorous raw-material sourcing, stability testing, and third-party lab verification before reaching pharmacies and families.
+            </p>
+          </div>
+
+          <div class="lg:col-span-6 grid grid-cols-2 gap-5">
+            <div class="rounded-2xl bg-[#FAF9F6] border border-zinc-200 p-6">
+              <div class="font-display text-3xl sm:text-4xl font-semibold text-green-800">50+</div>
+              <div class="text-sm text-zinc-600 mt-1">Approved Formulations</div>
+            </div>
+            <div class="rounded-2xl bg-[#FAF9F6] border border-zinc-200 p-6">
+              <div class="font-display text-3xl sm:text-4xl font-semibold text-amber-700">100%</div>
+              <div class="text-sm text-zinc-600 mt-1">Lab-Tested Batches</div>
+            </div>
+            <div class="rounded-2xl bg-[#FAF9F6] border border-zinc-200 p-6">
+              <div class="font-display text-3xl sm:text-4xl font-semibold text-zinc-900">1,200+</div>
+              <div class="text-sm text-zinc-600 mt-1">Partner Clinics &amp; Pharmacies</div>
+            </div>
+            <div class="rounded-2xl bg-[#FAF9F6] border border-zinc-200 p-6">
+              <div class="font-display text-3xl sm:text-4xl font-semibold text-zinc-900">24/7</div>
+              <div class="text-sm text-zinc-600 mt-1">Medical Inquiry Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quality & Certifications Section -->
+    <section id="quality" class="py-20 sm:py-24 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div id="certifications" class="max-w-2xl mb-12 scroll-mt-24">
+          <span class="text-xs font-semibold uppercase tracking-widest text-green-800">Quality &amp; Certifications</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-semibold text-zinc-900 mt-2 mb-3">
+            Certified safety at every stage
+          </h2>
+          <p class="text-base text-zinc-600">
+            Manufactured in audited facilities adhering to national and international regulatory benchmarks.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-2xl p-6 border border-zinc-200">
+            <span class="inline-block px-3 py-1 rounded-lg bg-green-50 text-green-800 text-xs font-bold mb-4">WHO-GMP</span>
+            <h3 class="font-display text-lg font-semibold text-zinc-900 mb-2">Good Manufacturing</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">Strict hygiene, validated equipment, and controlled production environments.</p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-zinc-200">
+            <span class="inline-block px-3 py-1 rounded-lg bg-amber-50 text-amber-800 text-xs font-bold mb-4">AYUSH</span>
+            <h3 class="font-display text-lg font-semibold text-zinc-900 mb-2">AYUSH Licensed</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">Authentic classical and proprietary Ayurvedic formulations verified for safety.</p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-zinc-200">
+            <span class="inline-block px-3 py-1 rounded-lg bg-green-50 text-green-800 text-xs font-bold mb-4">ISO 9001:2015</span>
+            <h3 class="font-display text-lg font-semibold text-zinc-900 mb-2">Quality Management</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">End-to-end batch traceability from raw herb and API sourcing to packaging.</p>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 border border-zinc-200">
+            <span class="inline-block px-3 py-1 rounded-lg bg-amber-50 text-amber-800 text-xs font-bold mb-4">FSSAI</span>
+            <h3 class="font-display text-lg font-semibold text-zinc-900 mb-2">Nutraceutical Compliance</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">Approved dietary supplements tested for heavy metals and microbial purity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Send a Query Section -->
+    <section id="contact" class="py-20 bg-white border-t border-zinc-200/80 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+          <div class="lg:col-span-5">
+            <span class="text-xs font-semibold uppercase tracking-widest text-amber-700">Get in Touch</span>
+            <h2 class="font-display text-3xl sm:text-4xl font-semibold text-zinc-900 mt-2 mb-4">
+              Send a product or distribution query
+            </h2>
+            <p class="text-base text-zinc-600 leading-relaxed mb-8">
+              Whether you are a healthcare practitioner, pharmacy distributor, or customer looking for product details, our team will respond promptly.
+            </p>
+
+            <div class="space-y-4 text-sm">
+              <div>
+                <span class="block text-xs font-semibold uppercase text-zinc-400">Email</span>
+                <a href="mailto:care@ozorozylife.com" class="font-semibold text-zinc-900 hover:text-green-800">care@ozorozylife.com</a>
+              </div>
+              <div>
+                <span class="block text-xs font-semibold uppercase text-zinc-400">Headquarters</span>
+                <span class="font-semibold text-zinc-900">Chennai, Tamil Nadu, India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7">
+            <form onsubmit="event.preventDefault(); document.getElementById('query-success').classList.remove('hidden'); this.reset();"
+              class="bg-[#FAF9F6] rounded-3xl p-6 sm:p-8 border border-zinc-200 space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="sender-name" class="block text-xs font-semibold text-zinc-700 mb-1.5">Full Name</label>
+                  <input type="text" id="sender-name" required placeholder="Enter your name"
+                    class="w-full px-4 py-3 rounded-xl bg-white border border-zinc-300 text-sm focus:outline-none focus:border-green-800" />
+                </div>
+                <div>
+                  <label for="sender-email" class="block text-xs font-semibold text-zinc-700 mb-1.5">Email Address</label>
+                  <input type="email" id="sender-email" required placeholder="you@example.com"
+                    class="w-full px-4 py-3 rounded-xl bg-white border border-zinc-300 text-sm focus:outline-none focus:border-green-800" />
+                </div>
+              </div>
+
+              <div>
+                <label for="query-type" class="block text-xs font-semibold text-zinc-700 mb-1.5">Inquiry Category</label>
+                <select id="query-type"
+                  class="w-full px-4 py-3 rounded-xl bg-white border border-zinc-300 text-sm focus:outline-none focus:border-green-800">
+                  <option>Product Information</option>
+                  <option>Pharmacy / Distribution Partnership</option>
+                  <option>Quality &amp; Batch Certificate Request</option>
+                  <option>General Support</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="query-message" class="block text-xs font-semibold text-zinc-700 mb-1.5">Message</label>
+                <textarea id="query-message" rows="4" required placeholder="Write your query here..."
+                  class="w-full px-4 py-3 rounded-xl bg-white border border-zinc-300 text-sm focus:outline-none focus:border-green-800"></textarea>
+              </div>
+
+              <button type="submit"
+                class="px-7 py-3.5 rounded-full bg-green-800 hover:bg-green-900 text-white text-sm font-semibold transition-colors cursor-pointer">
+                Submit Query
+              </button>
+
+              <p id="query-success"
+                class="hidden text-sm font-medium text-green-800 bg-green-50 border border-green-200 rounded-xl p-3.5">
+                Thank you! Your query has been received by the Ozoro Zylife team.
+              </p>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-zinc-900 text-zinc-400 py-12">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+      <div>
+        <span class="font-display font-semibold text-lg text-white">Ozoro Zylife</span>
+        <p class="text-xs text-zinc-400 mt-1">Modern Medicine. Traditional Wisdom. One trusted name.</p>
+      </div>
+      <p class="text-xs text-zinc-500">&copy; 2026 Ozoro Zylife. All rights reserved.</p>
+    </div>
+  </footer>
 
 </body>
 
